@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>It's Just June Pest Control | Same-Day Service · Bergen County, NJ</title>
+<meta name="description" content="Same-day pest control in Bergen County, NJ. Real technicians, fair pricing, 100% guarantee. Call now."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Sora:wght@300;400;500&family=Hanken+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ─── DESIGN TOKENS ─────────────────────────────────── */
+:root {
+  --primary:          #02241d;
+  --primary-mid:      #1a3a32;
+  --primary-light:    #2d4d44;
+  --primary-fixed:    #c7eade;
+  --secondary:        #735c00;
+  --secondary-cont:   #fed65b;
+  --secondary-dim:    #e9c349;
+  --lime:             #75ff68;
+  --lime-dim:         #4ce346;
+  --bg:               #f7f9ff;
+  --surface:          #ffffff;
+  --surface-low:      #ecf4ff;
+  --surface-mid:      #e2efff;
+  --on-surface:       #0d1d2a;
+  --on-surface-var:   #414846;
+  --outline:          #717975;
+  --outline-var:      #c1c8c4;
+  --dark-bg:          #0d1d2a;
+  --dark-card:        #152230;
+  --error:            #ba1a1a;
+
+  --font-head: 'Montserrat', sans-serif;
+  --font-body: 'Sora', sans-serif;
+  --font-label:'Hanken Grotesk', sans-serif;
+
+  --r-sm:   0.25rem;
+  --r:      0.5rem;
+  --r-md:   0.75rem;
+  --r-lg:   1rem;
+  --r-xl:   1.5rem;
+  --r-full: 9999px;
+
+  --shadow-glass: 0 4px 24px rgba(2,36,29,.08);
+  --shadow-card:  0 8px 40px rgba(2,36,29,.12);
+  --shadow-lift:  0 20px 60px rgba(2,36,29,.18);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--on-surface);
+  overflow-x:hidden;
+  /* Grain texture */
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+
+/* ─── TYPOGRAPHY ────────────────────────────────────── */
+.t-xl   {font-family:var(--font-head);font-size:clamp(2.6rem,5vw,4rem);font-weight:800;line-height:1.08;letter-spacing:-0.02em;}
+.t-lg   {font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-0.01em;}
+.t-md   {font-family:var(--font-head);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:600;line-height:1.25;}
+.t-label{font-family:var(--font-label);font-size:.8rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;}
+.t-body {font-family:var(--font-body);font-size:1rem;line-height:1.65;color:var(--on-surface-var);}
+.t-sm   {font-family:var(--font-body);font-size:.875rem;line-height:1.55;color:var(--on-surface-var);}
+
+/* ─── LAYOUT ─────────────────────────────────────────── */
+.container{max-width:1280px;margin:0 auto;padding:0 24px;}
+.section-gap{padding:96px 0;}
+
+/* ─── GLASS ─────────────────────────────────────────── */
+.glass{
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(2,36,29,.08);
+  box-shadow:var(--shadow-glass);
+}
+
+/* ─── BUTTONS ────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-label);font-weight:700;font-size:.9rem;
+  padding:15px 28px;border-radius:var(--r-full);
+  border:none;cursor:pointer;transition:all .2s ease;
+  white-space:nowrap;text-decoration:none;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 20px rgba(2,36,29,.3);}
+.btn-primary:hover{background:var(--primary-mid);box-shadow:0 8px 32px rgba(2,36,29,.4);}
+.btn-gold{background:var(--secondary-cont);color:var(--primary);box-shadow:0 4px 16px rgba(254,214,91,.4);}
+.btn-gold:hover{background:var(--secondary-dim);box-shadow:0 8px 28px rgba(254,214,91,.55);}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary);}
+.btn-outline:hover{background:var(--primary);color:#fff;}
+.btn-ghost-white{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.3);}
+.btn-ghost-white:hover{background:rgba(255,255,255,.2);border-color:#fff;}
+
+/* ─── TOPBAR ─────────────────────────────────────────── */
+.topbar{
+  background:var(--primary);
+  padding:9px 0;
+}
+.topbar-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+}
+.topbar-left,.topbar-right{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.topbar-item{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--font-label);font-size:.72rem;color:rgba(255,255,255,.75);
+  letter-spacing:.05em;
+}
+.topbar-item svg{width:13px;height:13px;opacity:.7;}
+.topbar-right a{
+  font-family:var(--font-label);font-size:.72rem;font-weight:600;
+  color:rgba(255,255,255,.6);letter-spacing:.05em;transition:color .2s;
+}
+.topbar-right a:hover{color:#fff;}
+
+/* ─── NAV ────────────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(247,249,255,.92);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(2,36,29,.08);
+  transition:box-shadow .3s;
+}
+.nav.elevated{box-shadow:0 2px 24px rgba(2,36,29,.1);}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;max-width:1280px;margin:0 auto;gap:16px;
+}
+.nav-logo{display:flex;flex-direction:column;line-height:1;}
+.nav-logo-main{font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:var(--primary);letter-spacing:-.02em;}
+.nav-logo-sub{font-family:var(--font-label);font-size:.65rem;color:var(--outline);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{font-family:var(--font-label);font-size:.8rem;color:var(--on-surface-var);transition:color .2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-phone{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--font-head);font-weight:700;font-size:.95rem;
+  color:var(--primary);
+}
+.nav-phone svg{width:16px;height:16px;}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero{
+  background:var(--bg);
+  padding:0;
+  overflow:hidden;
+}
+.hero-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:calc(100vh - 100px);
+  max-height:800px;
+}
+.hero-left{
+  padding:60px 48px 60px 0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-left:calc((100vw - 1280px)/2 + 24px);
+}
+.hero-location-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-label);font-size:.72rem;font-weight:600;
+  color:var(--outline);letter-spacing:.1em;
+  margin-bottom:18px;
+}
+.hero-location-tag::before{content:'';width:24px;height:1.5px;background:var(--outline-var);}
+.hero-headline{
+  font-family:var(--font-head);
+  font-size:clamp(2.4rem,4.5vw,3.6rem);
+  font-weight:800;line-height:1.06;
+  letter-spacing:-0.025em;
+  color:var(--primary);
+  margin-bottom:10px;
+}
+.hero-headline em{
+  font-style:normal;
+  background:var(--secondary-cont);
+  padding:2px 10px;
+  border-radius:var(--r-sm);
+  color:var(--primary);
+}
+.hero-subline{
+  font-family:var(--font-body);font-size:1.05rem;
+  color:var(--on-surface-var);line-height:1.6;
+  margin-bottom:28px;max-width:440px;
+}
+.hero-bullets{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:10px;}
+.hero-bullets li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-family:var(--font-body);font-size:.95rem;color:var(--on-surface);
+  line-height:1.4;
+}
+.hero-bullets li strong{font-weight:600;color:var(--primary);}
+.hero-check{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--lime-dim);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.hero-check svg{width:11px;height:11px;color:var(--primary);}
+.hero-cta-row{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-bottom:36px;
+}
+.hero-call-alt{
+  display:flex;align-items:center;gap:10px;
+}
+.hero-call-alt-label{
+  font-family:var(--font-label);font-size:.68rem;color:var(--outline);
+  letter-spacing:.06em;
+}
+.hero-call-alt-num{
+  font-family:var(--font-head);font-weight:700;font-size:1rem;
+  color:var(--primary);
+}
+.hero-trust-row{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.trust-logo{
+  font-family:var(--font-label);font-size:.7rem;font-weight:700;
+  color:var(--outline);letter-spacing:.06em;
+  padding:5px 10px;border:1px solid var(--outline-var);border-radius:var(--r-sm);
+  opacity:.7;
+}
+.hero-google-badge{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.9);
+  border:1px solid var(--outline-var);
+  border-radius:var(--r-lg);
+  padding:8px 14px;
+  box-shadow:var(--shadow-glass);
+}
+.hero-google-stars{color:#fbbc04;font-size:.9rem;letter-spacing:1px;}
+.hero-google-text{font-family:var(--font-label);font-size:.72rem;color:var(--on-surface-var);}
+.hero-google-rating{font-weight:700;color:var(--on-surface);}
+
+/* Hero right */
+.hero-right{
+  position:relative;
+  overflow:hidden;
+}
+.hero-photo{
+  width:100%;height:100%;
+  background:linear-gradient(150deg,#1a3a32 0%,#02241d 100%);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+/* Replace .hero-photo with real img: <img src="technician.jpg" style="width:100%;height:100%;object-fit:cover;"> */
+.hero-photo-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(2,36,29,.85),transparent);
+  padding:28px 32px 24px;
+  font-family:var(--font-label);font-size:.78rem;
+  color:rgba(255,255,255,.6);letter-spacing:.08em;
+  text-align:center;
+}
+.hero-photo-icon{font-size:5rem;opacity:.4;}
+.hero-badge-float{
+  position:absolute;top:24px;right:24px;
+  background:var(--secondary-cont);
+  border-radius:var(--r-lg);
+  padding:14px 18px;
+  box-shadow:var(--shadow-card);
+  text-align:center;
+}
+.hero-badge-float-num{
+  font-family:var(--font-head);font-size:1.6rem;font-weight:800;
+  color:var(--primary);line-height:1;
+}
+.hero-badge-float-text{
+  font-family:var(--font-label);font-size:.65rem;color:var(--secondary);
+  margin-top:2px;
+}
+
+/* ─── CONTACT STRIP ──────────────────────────────────── */
+.contact-strip{background:var(--primary-mid);}
+.contact-strip-inner{
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.contact-strip-item{
+  padding:22px 28px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  border-right:1px solid rgba(255,255,255,.1);
+  font-family:var(--font-label);font-size:.85rem;font-weight:600;
+  color:rgba(255,255,255,.85);
+  transition:background .2s;
+}
+.contact-strip-item:last-child{border-right:none;}
+.contact-strip-item:hover{background:rgba(255,255,255,.06);}
+.contact-strip-item svg{width:16px;height:16px;color:var(--secondary-cont);flex-shrink:0;}
+.contact-strip-item a{color:inherit;}
+
+/* ─── SECTION HEADER ─────────────────────────────────── */
+.section-header{text-align:center;margin-bottom:56px;}
+.section-header .t-label{color:var(--primary-light);margin-bottom:12px;display:block;}
+.section-header .t-lg{color:var(--primary);}
+.section-header .t-body{max-width:560px;margin:16px auto 0;}
+
+/* ─── WHY SECTION ────────────────────────────────────── */
+.why-section{
+  background:var(--bg);
+  padding:80px 0;
+}
+.why-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:72px;align-items:center;
+}
+.why-left .t-label{color:var(--primary-light);display:block;margin-bottom:14px;}
+.why-left .t-lg{color:var(--primary);margin-bottom:20px;}
+.why-left p{color:var(--on-surface-var);line-height:1.75;margin-bottom:16px;}
+.why-left p strong{color:var(--primary);font-weight:600;}
+.why-quote{
+  background:var(--surface);
+  border-left:4px solid var(--secondary-cont);
+  border-radius:0 var(--r-lg) var(--r-lg) 0;
+  padding:18px 22px;
+  margin:24px 0 32px;
+  box-shadow:var(--shadow-glass);
+}
+.why-quote p{
+  font-family:var(--font-body);font-size:1rem;font-style:italic;
+  color:var(--on-surface);line-height:1.55;margin-bottom:6px;
+}
+.why-quote cite{font-family:var(--font-label);font-size:.72rem;color:var(--outline);}
+.why-right{display:flex;flex-direction:column;gap:16px;}
+.why-card{
+  background:var(--surface);
+  border-radius:var(--r-lg);
+  padding:24px;
+  border:1px solid rgba(2,36,29,.07);
+  display:flex;gap:18px;align-items:flex-start;
+  transition:box-shadow .25s,transform .25s;
+}
+.why-card:hover{box-shadow:var(--shadow-card);transform:translateY(-2px);}
+.why-card-icon{
+  width:48px;height:48px;border-radius:var(--r-md);
+  background:var(--secondary-cont);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+}
+.why-card h4{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:4px;}
+.why-card p{font-family:var(--font-body);font-size:.875rem;color:var(--on-surface-var);line-height:1.6;}
+
+/* ─── HOW IT WORKS ───────────────────────────────────── */
+.how-section{
+  background:var(--primary);
+  padding:80px 0;
+  position:relative;overflow:hidden;
+}
+.how-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 70% at 80% 50%,rgba(75,255,104,.06),transparent 60%),
+             radial-gradient(ellipse 40% 60% at 10% 20%,rgba(254,214,91,.05),transparent 50%);
+}
+.how-section .section-header .t-label{color:rgba(255,255,255,.5);}
+.how-section .section-header .t-lg{color:#fff;}
+.how-section .section-header .t-body{color:rgba(255,255,255,.65);}
+.how-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  position:relative;z-index:1;
+}
+.how-step{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r-xl);
+  padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:background .25s,transform .25s;
+}
+.how-step:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);}
+.how-step::before{
+  content:'0'attr(data-n);
+  position:absolute;top:-20px;right:16px;
+  font-family:var(--font-head);font-size:6rem;font-weight:800;
+  color:rgba(255,255,255,.04);line-height:1;pointer-events:none;
+}
+.how-step-num{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--secondary-cont);
+  font-family:var(--font-head);font-size:1.1rem;font-weight:800;
+  color:var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+  box-shadow:0 4px 16px rgba(254,214,91,.35);
+}
+.how-step h3{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:10px;}
+.how-step p{font-family:var(--font-body);font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.65;}
+.how-step-emoji{font-size:1.5rem;margin-bottom:12px;}
+
+/* ─── SERVICES ───────────────────────────────────────── */
+.services-section{padding:88px 0;background:var(--surface-low);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.service-card{
+  background:var(--surface);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  border:1px solid rgba(2,36,29,.07);
+  box-shadow:var(--shadow-glass);
+  transition:box-shadow .25s,transform .25s;
+}
+.service-card:hover{box-shadow:var(--shadow-card);transform:translateY(-4px);}
+.service-card-top{
+  height:160px;display:flex;align-items:center;justify-content:center;
+  font-size:4.5rem;position:relative;overflow:hidden;
+}
+.sc-1{background:linear-gradient(135deg,#1a3a32,#02241d);}
+.sc-2{background:linear-gradient(135deg,#3b1710,#6b2a18);}
+.sc-3{background:linear-gradient(135deg,#142030,#1e3a5a);}
+.sc-4{background:linear-gradient(135deg,#3a3210,#685a18);}
+.sc-5{background:linear-gradient(135deg,#28123a,#4a2070);}
+.sc-6{background:linear-gradient(135deg,#1a3a32,#0d4a38);}
+.service-card-body{padding:22px 24px;}
+.service-card-body h3{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:8px;}
+.service-card-body p{font-family:var(--font-body);font-size:.855rem;color:var(--on-surface-var);line-height:1.65;margin-bottom:14px;}
+.service-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--font-label);font-size:.68rem;font-weight:600;
+  color:var(--primary-light);
+  background:rgba(2,36,29,.07);
+  padding:4px 10px;border-radius:var(--r-full);
+}
+.service-pill-gold{color:var(--secondary);background:rgba(254,214,91,.18);}
+
+/* ─── SERVICE AREAS ──────────────────────────────────── */
+.areas-section{padding:88px 0;background:var(--bg);}
+.areas-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.areas-content .t-label{color:var(--primary-light);display:block;margin-bottom:12px;}
+.areas-content .t-lg{color:var(--primary);margin-bottom:18px;}
+.areas-content p{color:var(--on-surface-var);line-height:1.75;margin-bottom:28px;}
+.areas-map-card{
+  background:var(--surface);
+  border-radius:var(--r-xl);
+  padding:36px;
+  border:1px solid rgba(2,36,29,.08);
+  box-shadow:var(--shadow-card);
+}
+.areas-map-title{
+  font-family:var(--font-head);font-size:1.1rem;font-weight:700;
+  color:var(--primary);margin-bottom:4px;
+  display:flex;align-items:center;gap:8px;
+}
+.areas-map-sub{font-family:var(--font-label);font-size:.72rem;color:var(--outline);margin-bottom:24px;}
+.areas-towns{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;
+  list-style:none;margin-bottom:24px;
+}
+.areas-towns li{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-size:.875rem;color:var(--on-surface);
+}
+.areas-towns li::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--lime-dim);flex-shrink:0;
+}
+.areas-note{
+  background:var(--surface-low);border-radius:var(--r-md);
+  padding:12px 16px;
+  font-family:var(--font-label);font-size:.72rem;color:var(--outline);
+  display:flex;align-items:center;gap:8px;
+}
+.areas-note svg{width:14px;height:14px;flex-shrink:0;}
+.areas-expand-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-label);font-size:.72rem;font-weight:600;
+  background:rgba(76,227,70,.12);color:#1a6b10;
+  padding:5px 12px;border-radius:var(--r-full);
+  margin-bottom:20px;
+}
+
+/* ─── TESTIMONIALS ───────────────────────────────────── */
+.testimonials-section{padding:88px 0;background:var(--surface-low);overflow:hidden;}
+.g-rating-bar{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  margin-bottom:52px;
+}
+.g-rating-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--surface);
+  border:1px solid var(--outline-var);
+  border-radius:var(--r-full);
+  padding:11px 22px;
+  box-shadow:var(--shadow-glass);
+}
+.g-stars{color:#fbbc04;font-size:1rem;letter-spacing:2px;}
+.g-text{font-family:var(--font-label);font-size:.78rem;color:var(--on-surface-var);}
+.g-bold{font-weight:700;color:var(--on-surface);}
+
+/* Marquee */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-outer {
+  /* Soft fade on both edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marquee-scroll 42s linear infinite;
+  will-change: transform;
+}
+/* Pause the whole track when any card inside is hovered */
+.marquee-track:has(.review-card:hover) {
+  animation-play-state: paused;
+}
+/* JS fallback class */
+.marquee-track.paused {
+  animation-play-state: paused;
+}
+
+.review-card {
+  background: var(--surface);
+  border: 1px solid rgba(2,36,29,.07);
+  border-radius: var(--r-xl);
+  padding: 30px;
+  box-shadow: var(--shadow-glass);
+  transition: box-shadow .25s, transform .25s;
+  width: 380px;
+  flex-shrink: 0;
+  cursor: default;
+  user-select: none;
+}
+.review-card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
+.review-stars { color: #fbbc04; font-size: .95rem; letter-spacing: 2px; margin-bottom: 14px; }
+.review-text {
+  font-family: var(--font-body); font-size: .9rem; color: var(--on-surface-var);
+  line-height: 1.72; margin-bottom: 22px; position: relative;
+}
+.review-text::before {
+  content: '\201C';
+  font-family: Georgia, serif; font-size: 3.5rem; color: var(--secondary-cont);
+  position: absolute; top: -14px; left: -4px; line-height: 1; pointer-events: none;
+}
+.review-author { display: flex; align-items: center; gap: 10px; }
+.review-av {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.ra-1{background:linear-gradient(135deg,#e84855,#c4283a);}
+.ra-2{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
+.ra-3{background:linear-gradient(135deg,#10b981,#059669);}
+.ra-4{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.ra-5{background:linear-gradient(135deg,#8b5cf6,#6d28d9);}
+.ra-6{background:linear-gradient(135deg,#ef4444,#dc2626);}
+.review-name { font-family: var(--font-label); font-size: .85rem; font-weight: 700; color: var(--on-surface); }
+.review-meta { font-family: var(--font-label); font-size: .68rem; color: var(--outline); margin-top: 2px; }
+
+/* ─── ABOUT ──────────────────────────────────────────── */
+.about-section{padding:88px 0;background:var(--bg);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.about-photo-wrap{position:relative;}
+.about-photo{
+  background:linear-gradient(150deg,#1a3a32,#02241d);
+  border-radius:var(--r-xl);height:480px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:6rem;overflow:hidden;
+  box-shadow:var(--shadow-lift);
+}
+/* Replace with: <img src="junior.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r-xl)"> */
+.about-stat{
+  position:absolute;
+  background:var(--surface);
+  border-radius:var(--r-lg);
+  padding:14px 18px;
+  box-shadow:var(--shadow-card);
+  border:1px solid rgba(2,36,29,.08);
+}
+.about-stat-1{bottom:-16px;left:-16px;}
+.about-stat-2{top:24px;right:-20px;}
+.about-stat-num{font-family:var(--font-head);font-size:1.7rem;font-weight:800;color:var(--primary);line-height:1;}
+.about-stat-lbl{font-family:var(--font-label);font-size:.65rem;color:var(--outline);margin-top:2px;}
+.about-content .t-label{color:var(--primary-light);display:block;margin-bottom:12px;}
+.about-content .t-lg{color:var(--primary);margin-bottom:20px;}
+.about-content p{color:var(--on-surface-var);line-height:1.78;margin-bottom:16px;}
+.about-content p strong{color:var(--primary);font-weight:600;}
+.about-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+
+/* ─── FINAL CTA ──────────────────────────────────────── */
+.cta-section{
+  background:var(--primary);
+  padding:88px 0;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 110%,rgba(76,227,70,.08),transparent 55%),
+             radial-gradient(ellipse 60% 50% at 50% -10%,rgba(254,214,91,.07),transparent 50%);
+}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.cta-section .t-label{color:rgba(255,255,255,.45);display:block;margin-bottom:14px;}
+.cta-section .t-xl{color:#fff;margin-bottom:16px;}
+.cta-section .t-xl em{font-style:normal;color:var(--secondary-cont);}
+.cta-section .t-body{color:rgba(255,255,255,.65);margin-bottom:40px;}
+.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:24px;}
+.cta-perks{
+  display:flex;justify-content:center;gap:24px;flex-wrap:wrap;
+  font-family:var(--font-label);font-size:.72rem;color:rgba(255,255,255,.45);
+}
+.cta-perks span{display:flex;align-items:center;gap:5px;}
+.cta-perks svg{width:12px;height:12px;color:var(--lime-dim);}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+.footer{background:#07161e;padding:60px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-brand-name{font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-.02em;}
+.footer-brand-tag{font-family:var(--font-label);font-size:.65rem;color:rgba(255,255,255,.35);margin-top:2px;margin-bottom:16px;}
+.footer-brand p{font-family:var(--font-body);font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:260px;margin-bottom:20px;}
+.footer-phone-link{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--font-head);font-weight:700;font-size:.95rem;
+  color:var(--secondary-cont);transition:color .2s;
+}
+.footer-phone-link:hover{color:#fff;}
+.footer-col h5{font-family:var(--font-label);font-size:.7rem;color:rgba(255,255,255,.35);margin-bottom:16px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-col ul a{font-family:var(--font-body);font-size:.855rem;color:rgba(255,255,255,.5);transition:color .2s;}
+.footer-col ul a:hover{color:#fff;}
+.footer-license{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-sm);padding:7px 12px;margin-top:12px;
+  font-family:var(--font-label);font-size:.65rem;color:rgba(255,255,255,.4);
+}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.07);
+  padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--font-label);font-size:.7rem;color:rgba(255,255,255,.3);
+  flex-wrap:wrap;gap:10px;
+}
+.footer-bottom-links{display:flex;gap:16px;}
+.footer-bottom-links a{color:rgba(255,255,255,.3);transition:color .2s;}
+.footer-bottom-links a:hover{color:rgba(255,255,255,.6);}
+
+/* ─── QUOTE MODAL ────────────────────────────────────── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(7,22,30,.75);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{
+  background:var(--surface);border-radius:var(--r-xl);
+  padding:44px;max-width:500px;width:100%;
+  position:relative;
+  transform:translateY(20px) scale(.97);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 32px 80px rgba(0,0,0,.35);
+}
+.modal-overlay.open .modal{transform:none;}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--surface-low);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;color:var(--outline);transition:background .2s;
+}
+.modal-close:hover{background:var(--surface-mid);}
+.modal-title{font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:var(--primary);margin-bottom:4px;}
+.modal-sub{font-family:var(--font-body);font-size:.875rem;color:var(--on-surface-var);margin-bottom:24px;}
+.form-group{margin-bottom:14px;}
+.form-group label{display:block;font-family:var(--font-label);font-size:.75rem;font-weight:600;color:var(--on-surface);margin-bottom:5px;}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px 14px;
+  border:0 0 1.5px 0 solid var(--outline-var);
+  border-bottom:1.5px solid var(--outline-var);
+  border-top:none;border-left:none;border-right:none;
+  background:transparent;
+  font-family:var(--font-body);font-size:.9rem;color:var(--on-surface);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  border-radius:0;
+  /* Glass input style */
+  background:var(--surface-low);
+  border:1px solid var(--outline-var);
+  border-radius:var(--r-md);
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--primary-light);
+  box-shadow:0 0 0 3px rgba(2,36,29,.08), 0 0 0 2px rgba(76,227,70,.12);
+}
+.form-group textarea{resize:vertical;min-height:80px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-submit{width:100%;padding:15px;font-size:.95rem;margin-top:6px;}
+.form-note{text-align:center;font-family:var(--font-label);font-size:.7rem;color:var(--outline);margin-top:10px;}
+
+/* ─── FLOATING CTA ───────────────────────────────────── */
+.float-cta{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  display:none;
+}
+.float-cta.visible{display:block;}
+.float-cta a{
+  display:flex;align-items:center;gap:8px;
+  background:var(--secondary-cont);
+  color:var(--primary);
+  font-family:var(--font-label);font-weight:700;font-size:.85rem;
+  padding:14px 24px;border-radius:var(--r-full);
+  box-shadow:0 8px 28px rgba(254,214,91,.5);
+  animation:popIn .35s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes popIn{from{transform:scale(.5) translateY(16px);opacity:0;}to{transform:none;opacity:1;}}
+
+/* ─── SCROLL ANIMATIONS ──────────────────────────────── */
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
+.fade-up.in{opacity:1;transform:none;}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-wrap{grid-template-columns:1fr;max-height:none;}
+  .hero-left{padding:60px 24px;max-width:680px;margin:0 auto;}
+  .hero-right{height:380px;}
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .reviews-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .why-grid,.areas-grid,.about-grid{grid-template-columns:1fr;gap:40px;}
+  .about-stat-1,.about-stat-2{position:static;margin-top:12px;display:inline-flex;}
+}
+@media(max-width:768px){
+  .topbar{display:none;}
+  .nav-links{display:none;}
+  .hero-left{padding:48px 20px;}
+  .hero-headline{font-size:2.2rem;}
+  .how-steps,.features-grid,.services-grid,.reviews-grid{grid-template-columns:1fr;}
+  .contact-strip-inner{grid-template-columns:1fr;}
+  .contact-strip-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
+  .about-photo{height:320px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .cta-actions{flex-direction:column;align-items:center;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- FLOAT CTA -->
+<div class="float-cta" id="floatCta">
+  <a href="tel:+12015550000">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    Call Now — Same Day
+  </a>
+</div>
+
+<!-- QUOTE MODAL -->
+<div class="modal-overlay" id="quoteModal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('quoteModal').classList.remove('open')">✕</button>
+    <div class="modal-title">Book Same-Day Service</div>
+    <div class="modal-sub">Fill this out and a real person will reach out within the hour — no bots, no scripts.</div>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Maria" required/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Torres" required/></div>
+      </div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(201) 555-0000" required/></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com"/></div>
+      <div class="form-group"><label>Property Address</label><input type="text" placeholder="123 Main St, Hackensack, NJ" required/></div>
+      <div class="form-group">
+        <label>What's the pest problem?</label>
+        <select required>
+          <option value="" disabled selected>Select type…</option>
+          <option>Mice / Rodents</option>
+          <option>Bed Bugs</option>
+          <option>Cockroaches</option>
+          <option>Wasps / Stinging Insects</option>
+          <option>Ants</option>
+          <option>Not sure / Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>How urgent?</label>
+        <select>
+          <option>Today — I need help now</option>
+          <option>Tomorrow works</option>
+          <option>Within the week</option>
+          <option>Just getting a quote</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Additional details</label><textarea placeholder="House size, number of rooms, how long you've had the problem…"></textarea></div>
+      <button type="submit" class="btn btn-primary form-submit">Send My Request →</button>
+      <div class="form-note">🔒 Your info stays private. A real team member contacts you — not a robot.</div>
+    </form>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-left">
+      <span class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        hello@itsjustjune.com
+      </span>
+      <span class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Bergen County, NJ
+      </span>
+      <span class="topbar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Mon–Sat · 7am–7pm
+      </span>
+    </div>
+    <div class="topbar-right">
+      <a href="#services">Services</a>
+      <a href="#areas">Service Area</a>
+      <a href="#testimonials">Reviews</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-main">It's Just June</span>
+      <span class="nav-logo-sub">Pest Control · Bergen County, NJ</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:+12015550000" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        (201) 555-0000
+      </a>
+      <button class="btn btn-gold" onclick="openModal()">Book Appointment</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <span class="hero-location-tag">Bergen County, NJ Pest Control</span>
+      <h1 class="hero-headline">
+        Same-Day Service.<br>
+        <em>Real Results.</em><br>
+        Guaranteed.
+      </h1>
+      <p class="hero-subline">
+        A real technician at your door today — not a call center script, not a 3-day wait.
+        Fair pricing, 9+ years of expertise, and a team that actually picks up the phone.
+      </p>
+      <ul class="hero-bullets">
+        <li>
+          <span class="hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span><strong>100% Guarantee</strong> — Free re-treatment if pests return</span>
+        </li>
+        <li>
+          <span class="hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span><strong>People-First Service</strong> — Real technicians, zero scripts</span>
+        </li>
+        <li>
+          <span class="hero-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span><strong>Same-Day Response</strong> — Call in the morning, we're there today</span>
+        </li>
+      </ul>
+      <div class="hero-cta-row">
+        <button class="btn btn-primary" onclick="openModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book Appointment
+        </button>
+        <div class="hero-call-alt">
+          <span style="font-family:var(--font-label);font-size:.75rem;color:var(--outline);">or</span>
+          <div>
+            <div class="hero-call-alt-label">TEXT OR CALL US</div>
+            <a href="tel:+12015550000" class="hero-call-alt-num">(201) 555-0000</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-trust-row">
+        <span class="trust-logo">NPMA</span>
+        <span class="trust-logo">NJ Licensed</span>
+        <span class="trust-logo">EPA Safe</span>
+        <span class="trust-logo">Fully Insured</span>
+        <div class="hero-google-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.63 12.18c0-.47-.04-.93-.11-1.36H12v2.57h3.16c-.14.74-.55 1.37-1.17 1.79v1.49h1.89c1.11-1.02 1.75-2.53 1.75-4.49z" fill="#4285f4"/><path d="M12 19.5c1.59 0 2.93-.53 3.91-1.43l-1.89-1.49c-.53.36-1.21.57-2.02.57-1.55 0-2.87-1.05-3.34-2.46H6.71v1.54A5.88 5.88 0 0012 19.5z" fill="#34a853"/><path d="M8.66 14.69a3.54 3.54 0 010-2.26V10.9H6.71a5.9 5.9 0 000 5.33l1.95-1.54z" fill="#fbbc04"/><path d="M12 8.57c.88 0 1.66.3 2.28.9l1.71-1.71C14.93 6.75 13.59 6.12 12 6.12a5.88 5.88 0 00-5.29 3.28l1.95 1.54c.47-1.41 1.79-2.37 3.34-2.37z" fill="#ea4335"/></svg>
+          <span class="hero-google-stars">★★★★★</span>
+          <span class="hero-google-text"><span class="hero-google-rating">5.0</span> · 50+ reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo">
+        <span class="hero-photo-icon">👷🏽</span>
+        <!-- REPLACE: <img src="technician-hero.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+        <div class="hero-photo-label">Replace with photo of Junior or technician in uniform on-site</div>
+        <div class="hero-badge-float">
+          <div class="hero-badge-float-num">Same<br>Day</div>
+          <div class="hero-badge-float-text">SERVICE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-strip-inner container" style="max-width:100%;padding:0;">
+    <a href="mailto:hello@itsjustjune.com" class="contact-strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      hello@itsjustjune.com
+    </a>
+    <a href="tel:+12015550000" class="contact-strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      (201) 555-0000
+    </a>
+    <div class="contact-strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Bergen County, NJ · Serving 16+ Towns
+    </div>
+  </div>
+</div>
+
+<!-- ① SERVICES — "Do they handle my problem?" -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="t-label">What We Handle</span>
+      <h2 class="t-lg">Whatever the pest — we've got it covered.</h2>
+      <p class="t-body">From rodents in the walls to bed bugs in the bedroom, Junior's team is trained, certified, and ready to eliminate it for good.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-card-top sc-1">🐭</div>
+        <div class="service-card-body">
+          <h3>Rodent Control</h3>
+          <p>We locate entry points, eliminate the population, and seal your home so mice and rats can't get back in. No more scratching in the walls at night.</p>
+          <span class="service-pill">✓ Same-day available</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-card-top sc-2">🪲</div>
+        <div class="service-card-body">
+          <h3>Bed Bug Treatment</h3>
+          <p>Targeted treatment protocols that eliminate bed bugs at every life stage — egg to adult. We don't just treat the surface, we eliminate the infestation.</p>
+          <span class="service-pill">✓ Free inspection</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-card-top sc-3">🪳</div>
+        <div class="service-card-body">
+          <h3>Cockroach Elimination</h3>
+          <p>We target harborage areas, breeding zones, and entry points — not just the ones you see. Complete and lasting treatment for all cockroach species.</p>
+          <span class="service-pill">✓ Guaranteed results</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-card-top sc-4">🐝</div>
+        <div class="service-card-body">
+          <h3>Wasps & Stinging Insects</h3>
+          <p>Wasp and hornet nests near your family are a real safety risk. We handle same-day emergency removals — safely and completely.</p>
+          <span class="service-pill service-pill-gold">⚡ Emergency response</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-card-top sc-5">🐜</div>
+        <div class="service-card-body">
+          <h3>Ant Infestations</h3>
+          <p>We find the colony, not just the trail. Species identification lets us choose the right treatment so the whole colony is eliminated — not just displaced.</p>
+          <span class="service-pill">✓ Interior & exterior</span>
+        </div>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-card-top sc-6">🛡️</div>
+        <div class="service-card-body">
+          <h3>Quarterly Protection Plan</h3>
+          <p>Seasonal visits, monitoring, and priority same-day response whenever you need it. Prevention costs less than treatment — protect your home year-round.</p>
+          <span class="service-pill service-pill-gold">★ Best value</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② TESTIMONIALS — "Are they any good?" -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="t-label">Real Reviews</span>
+      <h2 class="t-lg">People trust Junior — and they'll tell you exactly why.</h2>
+    </div>
+    <div class="g-rating-bar">
+      <div class="g-rating-pill">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.63 12.18c0-.47-.04-.93-.11-1.36H12v2.57h3.16c-.14.74-.55 1.37-1.17 1.79v1.49h1.89c1.11-1.02 1.75-2.53 1.75-4.49z" fill="#4285f4"/><path d="M12 19.5c1.59 0 2.93-.53 3.91-1.43l-1.89-1.49c-.53.36-1.21.57-2.02.57-1.55 0-2.87-1.05-3.34-2.46H6.71v1.54A5.88 5.88 0 0012 19.5z" fill="#34a853"/><path d="M8.66 14.69a3.54 3.54 0 010-2.26V10.9H6.71a5.9 5.9 0 000 5.33l1.95-1.54z" fill="#fbbc04"/><path d="M12 8.57c.88 0 1.66.3 2.28.9l1.71-1.71C14.93 6.75 13.59 6.12 12 6.12a5.88 5.88 0 00-5.29 3.28l1.95 1.54c.47-1.41 1.79-2.37 3.34-2.37z" fill="#ea4335"/></svg>
+        <span class="g-stars">★★★★★</span>
+        <span class="g-text"><span class="g-bold">5.0</span> rating on Google · 50+ verified reviews</span>
+      </div>
+    </div>
+    <div class="marquee-outer" id="marqueeOuter">
+      <div class="marquee-track" id="marqueeTrack">
+        <!-- SET 1 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">I called in the morning with a mouse problem and Junior was at my house by noon. He didn't just put traps and leave — he found where they were getting in and sealed it. Haven't seen a mouse since. This is how it should be done.</p>
+          <div class="review-author">
+            <div class="review-av ra-1">M</div>
+            <div><div class="review-name">Maria T.</div><div class="review-meta">Google Review · Hackensack, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Serious bed bug situation and honestly I was embarrassed to call. Junior made me feel zero judgment — explained everything clearly, and the treatment actually worked. No awkward upsells either. Just honest service.</p>
+          <div class="review-author">
+            <div class="review-av ra-2">D</div>
+            <div><div class="review-name">David R.</div><div class="review-meta">Google Review · Teaneck, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Three pest control companies over the years and this is the first time I felt like someone was on my side. Other companies quoted me $1,800. Junior did a thorough job at a fair price and walked me through every step.</p>
+          <div class="review-author">
+            <div class="review-av ra-3">S</div>
+            <div><div class="review-name">Sandra K.</div><div class="review-meta">Google Review · Englewood, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Giant wasp nest under my deck. I was terrified to go near it for weeks. Called and got same-day. Done in under an hour. My kids can finally play outside again. Couldn't recommend more.</p>
+          <div class="review-author">
+            <div class="review-av ra-4">J</div>
+            <div><div class="review-name">James M.</div><div class="review-meta">Google Review · Paramus, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">When I called, I got to talk to Junior directly. Not a hold queue, not a voicemail — just a real person who asked good questions and got to my house same-day. That alone sets him apart from every other company.</p>
+          <div class="review-author">
+            <div class="review-av ra-5">L</div>
+            <div><div class="review-name">Lisa C.</div><div class="review-meta">Google Review · Fort Lee, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Signed up for the quarterly plan — best decision I've made for this house. Consistent, they remember your property, and they actually show up when scheduled. My neighbor just switched from a big national company after seeing my results.</p>
+          <div class="review-author">
+            <div class="review-av ra-6">R</div>
+            <div><div class="review-name">Robert W.</div><div class="review-meta">Google Review · Bergenfield, NJ</div></div>
+          </div>
+        </div>
+        <!-- SET 2 (duplicate for seamless loop) -->
+        <div class="review-card" aria-hidden="true">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">I called in the morning with a mouse problem and Junior was at my house by noon. He didn't just put traps and leave — he found where they were getting in and sealed it. Haven't seen a mouse since. This is how it should be done.</p>
+          <div class="review-author">
+            <div class="review-av ra-1">M</div>
+            <div><div class="review-name">Maria T.</div><div class="review-meta">Google Review · Hackensack, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card" aria-hidden="true">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Serious bed bug situation and honestly I was embarrassed to call. Junior made me feel zero judgment — explained everything clearly, and the treatment actually worked. No awkward upsells either. Just honest service.</p>
+          <div class="review-author">
+            <div class="review-av ra-2">D</div>
+            <div><div class="review-name">David R.</div><div class="review-meta">Google Review · Teaneck, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card" aria-hidden="true">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Three pest control companies over the years and this is the first time I felt like someone was on my side. Other companies quoted me $1,800. Junior did a thorough job at a fair price and walked me through every step.</p>
+          <div class="review-author">
+            <div class="review-av ra-3">S</div>
+            <div><div class="review-name">Sandra K.</div><div class="review-meta">Google Review · Englewood, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card" aria-hidden="true">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Giant wasp nest under my deck. I was terrified to go near it for weeks. Called and got same-day. Done in under an hour. My kids can finally play outside again. Couldn't recommend more.</p>
+          <div class="review-author">
+            <div class="review-av ra-4">J</div>
+            <div><div class="review-name">James M.</div><div class="review-meta">Google Review · Paramus, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card" aria-hidden="true">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">When I called, I got to talk to Junior directly. Not a hold queue, not a voicemail — just a real person who asked good questions and got to my house same-day. That alone sets him apart from every other company.</p>
+          <div class="review-author">
+            <div class="review-av ra-5">L</div>
+            <div><div class="review-name">Lisa C.</div><div class="review-meta">Google Review · Fort Lee, NJ</div></div>
+          </div>
+        </div>
+        <div class="review-card" aria-hidden="true">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Signed up for the quarterly plan — best decision I've made for this house. Consistent, they remember your property, and they actually show up when scheduled. My neighbor just switched from a big national company after seeing my results.</p>
+          <div class="review-author">
+            <div class="review-av ra-6">R</div>
+            <div><div class="review-name">Robert W.</div><div class="review-meta">Google Review · Bergenfield, NJ</div></div>
+          </div>
+        </div>
+      </div><!-- /.marquee-track -->
+    </div><!-- /.marquee-outer -->
+  </div>
+</section>
+
+<!-- ③ SERVICE AREAS — "Do they come to me?" -->
+<section class="areas-section" id="areas">
+  <div class="container">
+    <div class="areas-grid">
+      <div class="areas-content">
+        <span class="t-label">Service Area</span>
+        <h2 class="t-lg">Close to home. Here when you need us.</h2>
+        <p>We start where we know best — Bergen County communities we're part of. By keeping our service area tight, we can actually show up same-day without sacrificing quality or response time.</p>
+        <span class="areas-expand-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Expanding one county every quarter
+        </span>
+        <p style="margin-bottom:0;">Not sure if we cover your town? Give us a call — if we can't make it to you yet, we'll let you know honestly and tell you when we can.</p>
+        <div style="margin-top:28px;">
+          <button class="btn btn-primary" onclick="openModal()">Check My Address →</button>
+        </div>
+      </div>
+      <div class="areas-map-card fade-up">
+        <div class="areas-map-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Bergen County Towns We Serve
+        </div>
+        <div class="areas-map-sub">Starting from Hackensack · Growing every quarter</div>
+        <ul class="areas-towns">
+          <li>Hackensack</li><li>Teaneck</li>
+          <li>Englewood</li><li>Fort Lee</li>
+          <li>Paramus</li><li>Bergenfield</li>
+          <li>Lodi</li><li>Garfield</li>
+          <li>Rutherford</li><li>Lyndhurst</li>
+          <li>Ridgefield</li><li>Fairview</li>
+          <li>Palisades Park</li><li>Cliffside Park</li>
+          <li>Little Ferry</li><li>Hasbrouck Heights</li>
+        </ul>
+        <div class="areas-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Don't see your town? Call us — we may still be able to help or let you know when we're coming.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ HOW IT WORKS — "How fast and easy is this?" -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="section-header">
+      <span class="t-label">Simple Process</span>
+      <h2 class="t-lg">From one call to problem solved — today.</h2>
+      <p class="t-body">No hoops. No waiting. Here's exactly what happens when you reach out.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step fade-up" data-n="1">
+        <div class="how-step-emoji">📞</div>
+        <div class="how-step-num">1</div>
+        <h3>Call, Text, or Fill Out the Form</h3>
+        <p>Tell us what you're dealing with, your address, and how urgently you need help. A real team member picks up and gets the details — no forms with 30 required fields.</p>
+      </div>
+      <div class="how-step fade-up" data-n="2">
+        <div class="how-step-emoji">🔍</div>
+        <div class="how-step-num">2</div>
+        <h3>Same-Day Inspection</h3>
+        <p>A licensed technician arrives today. We inspect your property, identify exactly what's happening, and walk you through what treatment is needed — and why. Free, no pressure.</p>
+      </div>
+      <div class="how-step fade-up" data-n="3">
+        <div class="how-step-emoji">✅</div>
+        <div class="how-step-num">3</div>
+        <h3>Problem Eliminated</h3>
+        <p>We treat, we eliminate, we explain everything we did. Then we set you up with a plan to keep it from coming back — whether that's a one-time fix or a quarterly protection plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ WHY + ABOUT — "Who is this guy and why should I trust him?" -->
+<section class="why-section" id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left">
+        <span class="t-label">The It's Just June Difference</span>
+        <h2 class="t-lg">Pest control from someone who actually gives a damn.</h2>
+        <p>Junior Solice has spent over 9 years inside the pest control industry — as a technician, manager, and consistently the #1 sales performer at every company he's worked for. Not because of slick sales tactics, but because he listens, diagnoses correctly, and treats people right.</p>
+        <p><strong>He started It's Just June because he got tired of watching big companies charge $2,000 to seal 5 holes</strong> — and then disappear after the invoice. You deserve better than that. So do your family and your home.</p>
+        <div class="why-quote">
+          <p>"I've seen it too many times. Someone calls for help, can't afford the quote, and gets left with the problem. That's not how I do business. People first — always."</p>
+          <cite>— Junior Solice, Founder</cite>
+        </div>
+        <button class="btn btn-primary" onclick="openModal()">Book Your Free Inspection →</button>
+      </div>
+      <div class="why-right">
+        <div class="why-card fade-up">
+          <div class="why-card-icon">⚡</div>
+          <div>
+            <h4>Same-Day Availability</h4>
+            <p>Call in the morning — a technician is at your door today. No 3-day waits. No "earliest we can do is next Thursday."</p>
+          </div>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-card-icon">🧑‍🤝‍🧑</div>
+          <div>
+            <h4>Real Humans, Every Step</h4>
+            <p>No overseas call centers. No bots repeating a script. When you call, a real person who knows pest control picks up.</p>
+          </div>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-card-icon">💰</div>
+          <div>
+            <h4>Honest, Fair Pricing</h4>
+            <p>We price for the work, not the upsell. No surprise fees, no predatory quotes. Just what's fair and what fixes the problem.</p>
+          </div>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-card-icon">🛡️</div>
+          <div>
+            <h4>100% Service Guarantee</h4>
+            <p>If the pests come back between treatments, so do we. Free re-treatments on all service plans — your satisfaction is non-negotiable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ ABOUT — "Meet the man behind it" -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-photo">
+          👷🏽
+          <!-- REPLACE: <img src="junior-photo.jpg" alt="Junior Solice" style="width:100%;height:100%;object-fit:cover;"> -->
+        </div>
+        <div class="about-stat about-stat-1">
+          <div class="about-stat-num">9+</div>
+          <div class="about-stat-lbl">Years in the industry</div>
+        </div>
+        <div class="about-stat about-stat-2">
+          <div class="about-stat-num">#1</div>
+          <div class="about-stat-lbl">Sales technician<br>3 months running</div>
+        </div>
+      </div>
+      <div class="about-content fade-up">
+        <span class="t-label">Meet Junior</span>
+        <h2 class="t-lg">It's Just June — people-first, always.</h2>
+        <p>Junior Solice has been in pest control for over 9 years — technician, manager, top sales performer. He's seen the inside of some of the industry's biggest companies and knows exactly what's wrong with them: <strong>they treat customers like numbers, not people.</strong></p>
+        <p>So he started his own company. No robots. No overseas call centers. No invoice padding. When you call It's Just June, you're talking to someone who genuinely wants to solve your problem — at a price that doesn't make you choose between your home and your wallet.</p>
+        <p>Every technician he trains is trained to the same standard: be attentive, be honest, be there. That's it. That's the whole difference.</p>
+        <div class="about-cta-row">
+          <a href="tel:+12015550000" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            Call Junior Directly
+          </a>
+          <button class="btn btn-outline" onclick="openModal()">Book an Appointment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <span class="t-label">Ready to Get Help?</span>
+    <h2 class="t-xl">Don't spend another night with the problem. <em>Call us today.</em></h2>
+    <p class="t-body">Same-day service is available right now. One call gets a real person, a same-day inspection, and a plan to get your home back.</p>
+    <div class="cta-actions">
+      <a href="tel:+12015550000" class="btn btn-gold" style="font-size:1rem;padding:17px 34px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Call (201) 555-0000
+      </a>
+      <button class="btn btn-ghost-white" onclick="openModal()" style="font-size:1rem;padding:17px 30px;">Book Free Inspection →</button>
+    </div>
+    <div class="cta-perks">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No obligation</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free inspection</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Real person answers</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 100% guarantee</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">It's Just June</div>
+        <div class="footer-brand-tag">Pest Control · Bergen County, NJ</div>
+        <p>People-first pest control with same-day service, honest pricing, and real humans who pick up the phone. Serving Bergen County communities.</p>
+        <a href="tel:+12015550000" class="footer-phone-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          (201) 555-0000
+        </a>
+        <div class="footer-license">🛡️ NJ Licensed · Fully Insured · EPA Compliant</div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Rodent Control</a></li>
+          <li><a href="#services">Bed Bug Treatment</a></li>
+          <li><a href="#services">Cockroach Elimination</a></li>
+          <li><a href="#services">Wasps & Stinging Insects</a></li>
+          <li><a href="#services">Ant Control</a></li>
+          <li><a href="#services">Quarterly Protection</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Junior</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#areas">Service Areas</a></li>
+
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+12015550000">Call (201) 555-0000</a></li>
+          <li><a href="sms:+12015550000">Text Us</a></li>
+          <li><a href="mailto:hello@itsjustjune.com">hello@itsjustjune.com</a></li>
+          <li><a href="#" onclick="openModal();return false;">Free Quote Form</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 It's Just June Pest Control · Bergen County, NJ. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav elevation
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('elevated',window.scrollY>40);
+  document.getElementById('floatCta').classList.toggle('visible',window.scrollY>600);
+});
+
+// Modal
+function openModal(){
+  document.getElementById('quoteModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e){
+  if(e.target===e.currentTarget){
+    document.getElementById('quoteModal').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.getElementById('quoteModal').classList.remove('open');
+    document.body.style.overflow='';
+  }
+});
+
+// Form submit
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.form-submit');
+  btn.textContent='✓ Sent! We\'ll be in touch shortly.';
+  btn.style.background='#2d7a35';btn.disabled=true;
+  setTimeout(()=>{
+    document.getElementById('quoteModal').classList.remove('open');
+    document.body.style.overflow='';
+    btn.textContent='Send My Request →';
+    btn.style.background='';btn.disabled=false;
+    e.target.reset();
+  },3000);
+}
+
+// Marquee pause on hover (JS fallback for browsers without :has() support)
+const track = document.getElementById('marqueeTrack');
+if (track) {
+  track.querySelectorAll('.review-card').forEach(card => {
+    card.addEventListener('mouseenter', () => track.classList.add('paused'));
+    card.addEventListener('mouseleave', () => track.classList.remove('paused'));
+  });
+}
+
+// Scroll reveal
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+},{threshold:.1,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
