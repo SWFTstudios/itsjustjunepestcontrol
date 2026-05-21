@@ -1,0 +1,42 @@
+---
+description: Core project context for It's Just June pest control site
+alwaysApply: true
+---
+
+# Project Context
+
+**Client:** Junior Solice — It's Just June Pest Control, Bergen County, NJ.
+
+**Stack:** Vanilla HTML/CSS/JS. No React, Vite, or Tailwind unless the user explicitly requests it.
+
+**Repo:** https://github.com/SWFTstudios/itsjustjunepestcontrol.git
+
+**Entry point:** `index.html` (monolith today; target layout uses `assets/` — see `asset-migration.mdc`).
+
+## Section map
+
+| ID | Content |
+|----|---------|
+| `#hero` | Headline, bullets, CTAs, hero photo placeholder |
+| `#services` | 6 pest service cards |
+| `#testimonials` | Review marquee (`#marqueeTrack`) |
+| `#areas` | Bergen County towns |
+| `#how` | 3-step process |
+| `#why` | Value props + founder quote |
+| `#about` | Junior bio + photo placeholder |
+| `#quoteModal` | Appointment form modal |
+
+## Placeholders (do not treat as production-ready)
+
+- Phone: `(201) 555-0000` / `tel:+12015550000` — replace before launch
+- Email: `hello@itsjustjune.com` — real
+- Form: `handleSubmit` fakes success; inputs lack `name` attributes
+- Images: emoji placeholders in hero and about sections
+- Footer: Privacy/Terms link to `#`
+
+## Conventions
+
+- Minimize diff scope; match existing patterns in `index.html`
+- Preserve brand spelling: **It's Just June**
+- Commit only when the user asks; no force-push to `main`
+- Read `INSTRUCTIONS.md` for prioritized todos

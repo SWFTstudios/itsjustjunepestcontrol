@@ -84,12 +84,14 @@ a{text-decoration:none;color:inherit;}
 
 /* ─── BUTTONS ────────────────────────────────────────── */
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
   font-family:var(--font-label);font-weight:700;font-size:.9rem;
   padding:15px 28px;border-radius:var(--r-full);
   border:none;cursor:pointer;transition:all .2s ease;
   white-space:nowrap;text-decoration:none;
+  min-height:48px;
 }
+.btn-block{width:100%;}
 .btn:hover{transform:translateY(-2px);}
 .btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 20px rgba(2,36,29,.3);}
 .btn-primary:hover{background:var(--primary-mid);box-shadow:0 8px 32px rgba(2,36,29,.4);}
@@ -151,6 +153,71 @@ a{text-decoration:none;color:inherit;}
 }
 .nav-phone svg{width:16px;height:16px;}
 .nav-actions{display:flex;align-items:center;gap:12px;}
+.nav-toggle{
+  display:none;
+  width:48px;height:48px;
+  align-items:center;justify-content:center;
+  background:var(--surface-low);border:1px solid rgba(2,36,29,.1);
+  border-radius:var(--r-md);cursor:pointer;
+  flex-shrink:0;
+}
+.nav-toggle span{
+  display:block;width:20px;height:2px;background:var(--primary);
+  position:relative;transition:background .2s;
+}
+.nav-toggle span::before,.nav-toggle span::after{
+  content:'';position:absolute;left:0;width:20px;height:2px;
+  background:var(--primary);transition:transform .25s,top .25s;
+}
+.nav-toggle span::before{top:-6px;}
+.nav-toggle span::after{top:6px;}
+.nav-toggle[aria-expanded="true"] span{background:transparent;}
+.nav-toggle[aria-expanded="true"] span::before{top:0;transform:rotate(45deg);}
+.nav-toggle[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg);}
+.nav-drawer{
+  display:none;
+  position:fixed;left:0;right:0;
+  top:var(--nav-drawer-top,64px);bottom:0;
+  background:rgba(247,249,255,.98);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(2,36,29,.08);
+  box-shadow:0 12px 40px rgba(2,36,29,.12);
+  z-index:999;
+  overflow-y:auto;
+}
+.nav-drawer.open{display:block;}
+.nav-drawer-inner{padding:20px 24px 28px;max-width:1280px;margin:0 auto;}
+.nav-drawer-links{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:20px;}
+.nav-drawer-links a{
+  display:flex;align-items:center;
+  min-height:48px;padding:0 12px;
+  font-family:var(--font-label);font-size:1rem;font-weight:600;
+  color:var(--on-surface);border-radius:var(--r-md);
+  transition:background .2s,color .2s;
+}
+.nav-drawer-links a:hover,.nav-drawer-links a:focus-visible{background:var(--surface-low);color:var(--primary);}
+.nav-drawer-ctas{display:flex;flex-direction:column;gap:10px;}
+.nav-book-short{display:none;}
+
+/* ─── MOBILE CTA BAR ─────────────────────────────────── */
+.mobile-cta-bar{
+  display:none;
+  position:fixed;left:0;right:0;bottom:0;z-index:998;
+  grid-template-columns:1fr 1fr;gap:10px;
+  padding:10px 16px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
+  background:rgba(247,249,255,.96);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-top:1px solid rgba(2,36,29,.1);
+  box-shadow:0 -4px 24px rgba(2,36,29,.1);
+}
+.mobile-cta-bar .btn{font-size:.85rem;padding:12px 16px;}
+.mobile-cta-call{box-shadow:0 4px 16px rgba(254,214,91,.45);}
+.hero-cta-call{display:none;}
+.hero-cta-book-desktop{display:inline-flex;}
+.hero-cta-book-mobile{display:none;}
 
 /* ─── HERO ───────────────────────────────────────────── */
 .hero{
@@ -293,6 +360,7 @@ a{text-decoration:none;color:inherit;}
 .contact-strip-item{
   padding:22px 28px;
   display:flex;align-items:center;justify-content:center;gap:12px;
+  min-height:48px;
   border-right:1px solid rgba(255,255,255,.1);
   font-family:var(--font-label);font-size:.85rem;font-weight:600;
   color:rgba(255,255,255,.85);
@@ -532,7 +600,7 @@ a{text-decoration:none;color:inherit;}
   padding: 30px;
   box-shadow: var(--shadow-glass);
   transition: box-shadow .25s, transform .25s;
-  width: 380px;
+  width: min(380px, calc(100vw - 48px));
   flex-shrink: 0;
   cursor: default;
   user-select: none;
@@ -662,6 +730,7 @@ a{text-decoration:none;color:inherit;}
 .modal{
   background:var(--surface);border-radius:var(--r-xl);
   padding:44px;max-width:500px;width:100%;
+  max-height:90dvh;overflow-y:auto;
   position:relative;
   transform:translateY(20px) scale(.97);
   transition:transform .35s cubic-bezier(.34,1.56,.64,1);
@@ -670,7 +739,7 @@ a{text-decoration:none;color:inherit;}
 .modal-overlay.open .modal{transform:none;}
 .modal-close{
   position:absolute;top:16px;right:16px;
-  width:32px;height:32px;border-radius:50%;
+  width:44px;height:44px;border-radius:50%;
   background:var(--surface-low);border:none;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   font-size:.9rem;color:var(--outline);transition:background .2s;
@@ -724,29 +793,123 @@ a{text-decoration:none;color:inherit;}
 .fade-up{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
 .fade-up.in{opacity:1;transform:none;}
 
-/* ─── RESPONSIVE ─────────────────────────────────────── */
-@media(max-width:1024px){
-  .hero-wrap{grid-template-columns:1fr;max-height:none;}
-  .hero-left{padding:60px 24px;max-width:680px;margin:0 auto;}
-  .hero-right{height:380px;}
+/* ─── FOCUS & MOTION ─────────────────────────────────── */
+a:focus-visible,.btn:focus-visible,button:focus-visible,
+.nav-toggle:focus-visible,.nav-drawer-links a:focus-visible,
+.contact-strip-item:focus-visible,.modal-close:focus-visible{
+  outline:2px solid var(--primary-light);
+  outline-offset:2px;
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .marquee-track{animation:none!important;overflow-x:auto;}
+  .fade-up{opacity:1;transform:none;transition:none;}
+  .btn:hover{transform:none;}
+  .float-cta a{animation:none;}
+}
+
+/* ─── RESPONSIVE: xl tablet (max 1023px) ─────────────── */
+@media(max-width:1023px){
+  .hero-wrap{grid-template-columns:1fr;max-height:none;min-height:auto;}
+  .hero-left{
+    padding:48px 24px 32px;
+    max-width:680px;margin:0 auto;
+    padding-left:24px;
+  }
+  .hero-right{height:320px;order:2;}
+  .hero-left{order:1;}
   .services-grid{grid-template-columns:repeat(2,1fr);}
-  .reviews-grid{grid-template-columns:repeat(2,1fr);}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
   .why-grid,.areas-grid,.about-grid{grid-template-columns:1fr;gap:40px;}
   .about-stat-1,.about-stat-2{position:static;margin-top:12px;display:inline-flex;}
+  .services-section,.testimonials-section,.areas-section,
+  .how-section,.why-section,.about-section{padding:72px 0;}
+  .section-header{margin-bottom:40px;}
 }
-@media(max-width:768px){
+
+/* ─── RESPONSIVE: md mobile (max 767px) ──────────────── */
+@media(max-width:767px){
+  body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px));}
   .topbar{display:none;}
-  .nav-links{display:none;}
-  .hero-left{padding:48px 20px;}
-  .hero-headline{font-size:2.2rem;}
-  .how-steps,.features-grid,.services-grid,.reviews-grid{grid-template-columns:1fr;}
-  .contact-strip-inner{grid-template-columns:1fr;}
-  .contact-strip-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
-  .about-photo{height:320px;}
+  .nav-links,.nav-phone{display:none;}
+  .nav-toggle{display:flex;}
+  .nav-book-full{display:none;}
+  .nav-book-short{display:inline-flex;}
+  .nav-inner{padding:10px 16px;}
+  .nav-actions .btn-gold{padding:10px 18px;font-size:.8rem;min-height:44px;}
+  .mobile-cta-bar{display:grid;}
+  .float-cta{display:none!important;}
+  .hero-left{padding:32px 16px 24px;}
+  .hero-headline{font-size:clamp(1.85rem,8vw,2.2rem);}
+  .hero-subline{font-size:.95rem;margin-bottom:20px;}
+  .hero-bullets{margin-bottom:24px;gap:12px;}
+  .hero-cta-row{
+    flex-direction:column;align-items:stretch;
+    gap:10px;margin-bottom:24px;
+  }
+  .hero-cta-call{display:inline-flex;width:100%;}
+  .hero-cta-book-desktop{display:none;}
+  .hero-cta-book-mobile{display:inline-flex;width:100%;}
+  .hero-call-alt{display:none;}
+  .hero-trust-row{
+    gap:10px;
+    overflow-x:auto;flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:4px;
+  }
+  .trust-logo{flex-shrink:0;}
+  .hero-google-badge{flex-shrink:0;}
+  .hero-wrap{min-height:auto;}
+  .hero-right{height:260px;}
+  .how-steps,.services-grid{grid-template-columns:1fr;}
+  .how-step::before{font-size:3rem;top:-8px;}
+  .contact-strip-inner{display:flex;flex-direction:column;}
+  .contact-strip-item{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    min-height:48px;padding:18px 20px;
+  }
+  .contact-strip-item:last-child{border-bottom:none;}
+  .contact-strip-order-1{order:1;}
+  .contact-strip-order-2{order:2;}
+  .contact-strip-order-3{order:3;}
+  .areas-towns{grid-template-columns:1fr;}
+  .about-photo{height:280px;}
   .footer-grid{grid-template-columns:1fr;}
-  .cta-actions{flex-direction:column;align-items:center;}
+  .footer-bottom{
+    flex-direction:column;align-items:center;
+    text-align:center;gap:12px;
+  }
+  .cta-actions,.about-cta-row{
+    flex-direction:column;align-items:stretch;width:100%;
+  }
+  .cta-actions .btn,.about-cta-row .btn{width:100%;justify-content:center;}
+  .cta-actions .btn-ghost-white{order:2;}
+  .cta-actions .btn-gold{order:1;}
+  .about-cta-row .btn-primary{order:1;}
+  .about-cta-row .btn-outline{order:2;}
   .form-row{grid-template-columns:1fr;}
+  .modal{padding:28px 20px 24px;}
+  .section-header{margin-bottom:28px;}
+  .services-section,.testimonials-section,.areas-section,
+  .how-section,.why-section,.about-section{padding:56px 0;}
+  .section-gap{padding:56px 0;}
+  .container{padding:0 16px;}
+  .marquee-track{animation-duration:60s;}
+  .review-card{padding:22px;}
+}
+
+/* ─── RESPONSIVE: sm small phone (max 479px) ─────────── */
+@media(max-width:479px){
+  .nav-logo-sub{display:none;}
+  .nav-logo-main{font-size:1.05rem;}
+  .hero-left{padding:28px 16px 20px;}
+  .hero-right{height:220px;}
+  .hero-photo-label{padding:16px;font-size:.7rem;}
+  .hero-badge-float{padding:12px 14px;}
+  .cta-perks{gap:12px 16px;}
+  .cta-perks span{font-size:.65rem;}
+  .why-quote{padding:20px;}
 }
 </style>
 </head>
@@ -846,7 +1009,29 @@ a{text-decoration:none;color:inherit;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
         (201) 555-0000
       </a>
-      <button class="btn btn-gold" onclick="openModal()">Book Appointment</button>
+      <button type="button" class="btn btn-gold nav-book-full" onclick="openModal()">Book Appointment</button>
+      <button type="button" class="btn btn-gold nav-book-short" onclick="openModal()">Book</button>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="nav-drawer-inner">
+      <ul class="nav-drawer-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#areas">Service Areas</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#about">About Junior</a></li>
+      </ul>
+      <div class="nav-drawer-ctas">
+        <a href="tel:+12015550000" class="btn btn-gold btn-block">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (201) 555-0000
+        </a>
+        <button type="button" class="btn btn-primary btn-block" onclick="openModal()">Book Appointment</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -880,9 +1065,17 @@ a{text-decoration:none;color:inherit;}
         </li>
       </ul>
       <div class="hero-cta-row">
-        <button class="btn btn-primary" onclick="openModal()">
+        <a href="tel:+12015550000" class="btn btn-gold btn-block hero-cta-call">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (201) 555-0000 — Same Day
+        </a>
+        <button type="button" class="btn btn-primary hero-cta-book-desktop" onclick="openModal()">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Book Appointment
+        </button>
+        <button type="button" class="btn btn-primary btn-block hero-cta-book-mobile" onclick="openModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book Free Inspection
         </button>
         <div class="hero-call-alt">
           <span style="font-family:var(--font-label);font-size:.75rem;color:var(--outline);">or</span>
@@ -921,15 +1114,15 @@ a{text-decoration:none;color:inherit;}
 <!-- CONTACT STRIP -->
 <div class="contact-strip">
   <div class="contact-strip-inner container" style="max-width:100%;padding:0;">
-    <a href="mailto:hello@itsjustjune.com" class="contact-strip-item">
+    <a href="tel:+12015550000" class="contact-strip-item contact-strip-order-1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      Call (201) 555-0000
+    </a>
+    <a href="mailto:hello@itsjustjune.com" class="contact-strip-item contact-strip-order-2">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       hello@itsjustjune.com
     </a>
-    <a href="tel:+12015550000" class="contact-strip-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-      (201) 555-0000
-    </a>
-    <div class="contact-strip-item">
+    <div class="contact-strip-item contact-strip-order-3">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       Bergen County, NJ · Serving 16+ Towns
     </div>
@@ -1263,11 +1456,11 @@ a{text-decoration:none;color:inherit;}
         <p>So he started his own company. No robots. No overseas call centers. No invoice padding. When you call It's Just June, you're talking to someone who genuinely wants to solve your problem — at a price that doesn't make you choose between your home and your wallet.</p>
         <p>Every technician he trains is trained to the same standard: be attentive, be honest, be there. That's it. That's the whole difference.</p>
         <div class="about-cta-row">
-          <a href="tel:+12015550000" class="btn btn-primary">
+          <a href="tel:+12015550000" class="btn btn-gold">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             Call Junior Directly
           </a>
-          <button class="btn btn-outline" onclick="openModal()">Book an Appointment</button>
+          <button type="button" class="btn btn-primary" onclick="openModal()">Book an Appointment</button>
         </div>
       </div>
     </div>
@@ -1351,16 +1544,64 @@ a{text-decoration:none;color:inherit;}
   </div>
 </footer>
 
+<!-- MOBILE STICKY CTA BAR -->
+<div class="mobile-cta-bar" id="mobileCtaBar" role="region" aria-label="Quick actions">
+  <a href="tel:+12015550000" class="btn btn-gold mobile-cta-call">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    Call Now
+  </a>
+  <button type="button" class="btn btn-primary mobile-cta-book" onclick="openModal()">Book</button>
+</div>
+
 <script>
-// Nav elevation
+// Nav elevation + float CTA (desktop only)
 const nav=document.getElementById('mainNav');
+const floatCta=document.getElementById('floatCta');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('elevated',window.scrollY>40);
-  document.getElementById('floatCta').classList.toggle('visible',window.scrollY>600);
+  if(floatCta&&window.innerWidth>767){
+    floatCta.classList.toggle('visible',window.scrollY>600);
+  }
 });
+
+// Mobile nav drawer
+const navToggle=document.getElementById('navToggle');
+const navDrawer=document.getElementById('navDrawer');
+function setNavDrawerTop(){
+  if(nav&&navDrawer){
+    document.documentElement.style.setProperty('--nav-drawer-top',nav.offsetHeight+'px');
+  }
+}
+function closeNavDrawer(){
+  if(!navToggle||!navDrawer)return;
+  navToggle.setAttribute('aria-expanded','false');
+  navDrawer.classList.remove('open');
+  navDrawer.setAttribute('aria-hidden','true');
+  if(!document.getElementById('quoteModal').classList.contains('open')){
+    document.body.style.overflow='';
+  }
+}
+function openNavDrawer(){
+  setNavDrawerTop();
+  navToggle.setAttribute('aria-expanded','true');
+  navDrawer.classList.add('open');
+  navDrawer.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+if(navToggle&&navDrawer){
+  setNavDrawerTop();
+  window.addEventListener('resize',setNavDrawerTop);
+  navToggle.addEventListener('click',()=>{
+    navToggle.getAttribute('aria-expanded')==='true'?closeNavDrawer():openNavDrawer();
+  });
+  navDrawer.querySelectorAll('a').forEach(link=>{
+    link.addEventListener('click',closeNavDrawer);
+  });
+}
 
 // Modal
 function openModal(){
+  closeNavDrawer();
   document.getElementById('quoteModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -1373,6 +1614,7 @@ function closeModal(e){
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     document.getElementById('quoteModal').classList.remove('open');
+    closeNavDrawer();
     document.body.style.overflow='';
   }
 });

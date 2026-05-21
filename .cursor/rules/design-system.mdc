@@ -1,0 +1,56 @@
+---
+description: CSS design tokens and component classes for the pest control site
+globs: "**/*.{html,css}"
+alwaysApply: false
+---
+
+# Design System
+
+No Tailwind, Bootstrap, or CSS frameworks. Use existing custom properties and classes.
+
+## Tokens (`:root` in `assets/css/main.css` or embedded `<style>`)
+
+| Token | Role |
+|-------|------|
+| `--primary`, `--primary-mid`, `--primary-light` | Brand greens |
+| `--secondary-cont`, `--secondary-dim` | Gold CTAs |
+| `--lime`, `--lime-dim` | Accent highlights |
+| `--bg`, `--surface`, `--surface-low` | Backgrounds |
+| `--on-surface`, `--outline` | Text and borders |
+| `--font-head`, `--font-body`, `--font-label` | Montserrat, Sora, Hanken Grotesk |
+| `--r-sm` … `--r-full`, `--shadow-*` | Radius and elevation |
+
+Change colors only via `:root` — do not hardcode hex in new rules unless matching an existing one-off.
+
+## Typography utilities
+
+- `.t-xl`, `.t-lg`, `.t-md` — headings (Montserrat)
+- `.t-label` — uppercase labels (Hanken Grotesk)
+- `.t-body`, `.t-sm` — body copy (Sora)
+
+## Layout & components
+
+- `.container` — max-width 1280px, horizontal padding
+- `.section-gap` / section padding — keep vertical rhythm consistent
+- `.section-header` — centered section titles
+- `.btn`, `.btn-primary`, `.btn-gold`, `.btn-outline`, `.btn-ghost-white`
+- `.glass` — frosted panels with `backdrop-filter`
+- `.fade-up` — scroll-reveal target (paired with JS)
+
+## Fonts
+
+Keep Google Fonts link: Montserrat (head), Sora (body), Hanken Grotesk (labels).
+
+## Example — new CTA button
+
+```css
+/* ✅ GOOD — uses tokens */
+.my-cta {
+  background: var(--primary);
+  font-family: var(--font-label);
+  border-radius: var(--r-full);
+}
+
+/* ❌ BAD — arbitrary colors */
+.my-cta { background: #033; font-family: Arial; }
+```

@@ -1,0 +1,49 @@
+---
+description: Vanilla JavaScript patterns for modal, scroll, and marquee behavior
+globs: "**/*.{html,js}"
+alwaysApply: false
+---
+
+# Vanilla JavaScript
+
+No bundler or npm dependencies. Prefer `assets/js/main.js` after the asset split; until then, keep inline `<script>` at end of `index.html`.
+
+## Public API (preserve unless refactoring)
+
+| Function | Role |
+|----------|------|
+| `openModal()` | Opens `#quoteModal`, sets `body` overflow hidden |
+| `closeModal(e)` | Closes on overlay click (`e.target === e.currentTarget`) |
+| `handleSubmit(e)` | Prevents default; mock success UI on form |
+
+Inline handlers in HTML call these: `onclick="openModal()"`, `onsubmit="handleSubmit(event)"`.
+
+## Scroll behavior
+
+```javascript
+// #mainNav gets .elevated when scrollY > 40
+// #floatCta gets .visible when scrollY > 600
+```
+
+## Scroll reveal
+
+- Targets: `.fade-up`
+- `IntersectionObserver` with `threshold: 0.1`, adds `.in` once visible
+
+## Marquee (`#marqueeTrack`)
+
+- Pause on card `mouseenter` / `mouseleave` via `.paused` class
+- Do not break CSS animation on the track when editing reviews
+
+## Form backend (future)
+
+When integrating a real endpoint:
+
+1. Add `name` on every input/select/textarea
+2. Replace mock `handleSubmit` with `fetch` or native `action`/`method`
+3. Keep success/error UX consistent with existing button state change
+
+## Style
+
+- Use `const` / arrow functions as in existing code
+- Query by ID (`getElementById`) or stable classes — avoid brittle nth-child selectors

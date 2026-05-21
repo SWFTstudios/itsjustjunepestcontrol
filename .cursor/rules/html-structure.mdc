@@ -1,0 +1,47 @@
+---
+description: HTML structure, sections, and accessibility for the landing page
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# HTML Structure
+
+## Document pattern
+
+Single-page layout: topbar → `#mainNav` (+ `#navDrawer` on mobile) → sections → footer. Modal `#quoteModal` and `#mobileCtaBar` sit outside main flow.
+
+**Mobile patterns:** `#navToggle` opens `#navDrawer` (section links + Call/Book). `#mobileCtaBar` is sticky bottom Call + Book (≤767px only). Preserve `closeNavDrawer()` when opening `#quoteModal`.
+
+## Section anchors (preserve when editing nav/footer links)
+
+`#hero`, `#services`, `#testimonials`, `#areas`, `#how`, `#why`, `#about`
+
+Nav and footer already link to these IDs — do not rename without updating all references.
+
+## Class naming
+
+Follow existing BEM-like blocks already in the file:
+
+- Block: `.hero`, `.service-card`, `.review-card`, `.footer-grid`
+- Element: `.hero-headline`, `.service-card-body`, `.nav-logo-main`
+- Modifier: `.btn-gold`, `.service-pill-gold`, `.nav.elevated`
+
+Do not introduce conflicting utility-class systems.
+
+## Semantic HTML
+
+- One `<h1>` in hero; section titles use `<h2 class="t-lg">`
+- Use `<section>` with `id` for major blocks
+- Form inside modal: labels paired with inputs; add `name` when wiring backend
+- Images: always `alt` text; replace emoji placeholders with `<img src="assets/images/...">`
+
+## Accessibility
+
+- Interactive elements: real `<button>` for actions, `<a href>` for navigation/call/email
+- Modal: close on overlay click, Escape key (already implemented)
+- Focus styles: preserve `:focus` rules on form inputs
+- `tel:` and `mailto:` links for phone and email CTAs
+
+## Copy tone
+
+People-first, direct, local (Bergen County). Avoid corporate jargon. Founder name: **Junior Solice**.

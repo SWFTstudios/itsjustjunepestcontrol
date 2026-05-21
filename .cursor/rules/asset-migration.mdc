@@ -1,0 +1,72 @@
+---
+description: Steps to split index.html monolith into assets/ folder structure
+globs: "**/*"
+alwaysApply: false
+---
+
+# Asset Migration (Monolith → `assets/`)
+
+Execute in this order. Test in browser after each step.
+
+## 1. Create folders
+
+```
+assets/css/main.css
+assets/js/main.js
+assets/images/     # .gitkeep or real photos
+```
+
+## 2. Extract CSS
+
+- Cut the `<style>` block contents from `index.html` (design tokens through responsive rules)
+- Paste into `assets/css/main.css` (no `<style>` tags)
+- In `index.html` `<head>`:
+
+```html
+<link rel="stylesheet" href="assets/css/main.css"/>
+```
+
+## 3. Extract JavaScript
+
+- Cut the bottom `<script>` block into `assets/js/main.js`
+- In `index.html` before `</body>`:
+
+```html
+<script src="assets/js/main.js" defer></script>
+```
+
+## 4. Images
+
+Replace emoji placeholders:
+
+| Location | File |
+|----------|------|
+| `.hero-photo` | `assets/images/technician-hero.jpg` |
+| `.about-photo` | `assets/images/junior-photo.jpg` |
+
+```html
+<img src="assets/images/technician-hero.jpg" alt="Junior Solice, pest control technician" style="width:100%;height:100%;object-fit:cover;">
+```
+
+## 5. Contact constants (optional)
+
+`assets/js/config.js`:
+
+```javascript
+export const PHONE_DISPLAY = '(201) XXX-XXXX';
+export const PHONE_TEL = '+1XXXXXXXXXX';
+export const EMAIL = 'hello@itsjustjune.com';
+```
+
+If staying script-free, search-replace phone/email in HTML after split.
+
+## 6. Verify
+
+- Serve via `python3 -m http.server` (not `file://`) so asset paths resolve
+- Check modal, marquee pause, scroll reveal, mobile breakpoints
+- Confirm Google Fonts `<link>` remains in `<head>`
+
+## Do not
+
+- Introduce a build tool unless the user requests it
+- Change section IDs or modal behavior during extraction-only work
