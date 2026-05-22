@@ -7,6 +7,7 @@
 <meta name="description" content="Same-day pest control in Bergen County, NJ. Real technicians, fair pricing, 100% guarantee. Call now."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://images.unsplash.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Sora:wght@300;400;500&family=Hanken+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
 <style>
 /* ─── DESIGN TOKENS ─────────────────────────────────── */
@@ -49,12 +50,14 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%;}
 body{
   font-family:var(--font-body);
   background:var(--bg);
   color:var(--on-surface);
   overflow-x:hidden;
+  max-width:100%;
+  width:100%;
   /* Grain texture */
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
 }
@@ -70,8 +73,14 @@ a{text-decoration:none;color:inherit;}
 .t-sm   {font-family:var(--font-body);font-size:.875rem;line-height:1.55;color:var(--on-surface-var);}
 
 /* ─── LAYOUT ─────────────────────────────────────────── */
-.container{max-width:1280px;margin:0 auto;padding:0 24px;}
+.container{max-width:1280px;width:100%;margin:0 auto;padding:0 24px;min-width:0;}
 .section-gap{padding:96px 0;}
+section,.hero,.hero-wrap,.areas-grid,.about-grid,.why-grid,
+.contact-strip,.contact-strip-inner,.nav-inner,.areas-map-card,
+.about-photo-wrap,.cta-inner,.modal-overlay{
+  max-width:100%;min-width:0;
+}
+h1,h2,h3,h4,p,li,span,a{overflow-wrap:break-word;word-wrap:break-word;}
 
 /* ─── GLASS ─────────────────────────────────────────── */
 .glass{
@@ -138,10 +147,14 @@ a{text-decoration:none;color:inherit;}
 .nav.elevated{box-shadow:0 2px 24px rgba(2,36,29,.1);}
 .nav-inner{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 24px;max-width:1280px;margin:0 auto;gap:16px;
+  padding:14px 24px;max-width:1280px;width:100%;margin:0 auto;gap:12px;
 }
-.nav-logo{display:flex;flex-direction:column;line-height:1;}
-.nav-logo-main{font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:var(--primary);letter-spacing:-.02em;}
+.nav-logo{display:flex;flex-direction:column;line-height:1;min-width:0;flex:1 1 auto;}
+.nav-logo-main{
+  font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:var(--primary);
+  letter-spacing:-.02em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
 .nav-logo-sub{font-family:var(--font-label);font-size:.65rem;color:var(--outline);margin-top:2px;}
 .nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
 .nav-links a{font-family:var(--font-label);font-size:.8rem;color:var(--on-surface-var);transition:color .2s;}
@@ -152,7 +165,7 @@ a{text-decoration:none;color:inherit;}
   color:var(--primary);
 }
 .nav-phone svg{width:16px;height:16px;}
-.nav-actions{display:flex;align-items:center;gap:12px;}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .nav-toggle{
   display:none;
   width:48px;height:48px;
@@ -174,6 +187,13 @@ a{text-decoration:none;color:inherit;}
 .nav-toggle[aria-expanded="true"] span{background:transparent;}
 .nav-toggle[aria-expanded="true"] span::before{top:0;transform:rotate(45deg);}
 .nav-toggle[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg);}
+.nav-backdrop{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(7,22,30,.45);
+  z-index:999;
+}
+.nav-backdrop.open{display:block;}
 .nav-drawer{
   display:none;
   position:fixed;left:0;right:0;
@@ -183,28 +203,44 @@ a{text-decoration:none;color:inherit;}
   -webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid rgba(2,36,29,.08);
   box-shadow:0 12px 40px rgba(2,36,29,.12);
-  z-index:999;
+  z-index:1001;
   overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
 }
 .nav-drawer.open{display:block;}
-.nav-drawer-inner{padding:20px 24px 28px;max-width:1280px;margin:0 auto;}
-.nav-drawer-links{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:20px;}
+.nav-drawer-inner{
+  padding:16px 20px calc(28px + env(safe-area-inset-bottom,0px));
+  max-width:1280px;margin:0 auto;
+}
+.nav-drawer-links{list-style:none;display:flex;flex-direction:column;gap:2px;margin-bottom:20px;}
 .nav-drawer-links a{
   display:flex;align-items:center;
-  min-height:48px;padding:0 12px;
-  font-family:var(--font-label);font-size:1rem;font-weight:600;
+  min-height:48px;padding:0 14px;
+  font-family:var(--font-label);font-size:1.05rem;font-weight:600;
   color:var(--on-surface);border-radius:var(--r-md);
   transition:background .2s,color .2s;
 }
 .nav-drawer-links a:hover,.nav-drawer-links a:focus-visible{background:var(--surface-low);color:var(--primary);}
-.nav-drawer-ctas{display:flex;flex-direction:column;gap:10px;}
+.nav-drawer-ctas{
+  display:flex;flex-direction:column;gap:12px;
+  padding-top:20px;border-top:1px solid rgba(2,36,29,.1);
+}
+.nav-drawer-ctas .btn{width:100%;justify-content:center;}
 .nav-book-short{display:none;}
+/* Tablet + mobile: hamburger menu only in header */
+@media(max-width:1023px){
+  .nav-links,.nav-phone,.nav-book-full,.nav-book-short{display:none!important;}
+  .nav-toggle{display:flex;}
+  .nav-inner{flex-wrap:nowrap;padding:10px 16px;}
+  .nav-actions{gap:0;}
+}
 
 /* ─── MOBILE CTA BAR ─────────────────────────────────── */
 .mobile-cta-bar{
   display:none;
   position:fixed;left:0;right:0;bottom:0;z-index:998;
-  grid-template-columns:1fr 1fr;gap:10px;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;
+  width:100%;max-width:100vw;
   padding:10px 16px;
   padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
   background:rgba(247,249,255,.96);
@@ -227,14 +263,18 @@ a{text-decoration:none;color:inherit;}
 }
 .hero-wrap{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   min-height:calc(100vh - 100px);
   max-height:800px;
+  width:100%;
 }
 .hero-left{
-  padding:60px 48px 60px 0;
+  padding:60px 48px 60px 24px;
   display:flex;flex-direction:column;justify-content:center;
-  padding-left:calc((100vw - 1280px)/2 + 24px);
+  min-width:0;max-width:100%;
+}
+@media(min-width:1280px){
+  .hero-left{padding-left:calc((100vw - 1280px)/2 + 24px);}
 }
 .hero-location-tag{
   display:inline-flex;align-items:center;gap:6px;
@@ -261,13 +301,20 @@ a{text-decoration:none;color:inherit;}
 .hero-subline{
   font-family:var(--font-body);font-size:1.05rem;
   color:var(--on-surface-var);line-height:1.6;
-  margin-bottom:28px;max-width:440px;
+  margin-bottom:28px;max-width:440px;width:100%;min-width:0;
 }
-.hero-bullets{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:10px;}
+.hero-bullets{
+  list-style:none;margin-bottom:32px;
+  display:flex;flex-direction:column;gap:10px;
+  width:100%;max-width:100%;min-width:0;
+}
 .hero-bullets li{
   display:flex;align-items:flex-start;gap:10px;
   font-family:var(--font-body);font-size:.95rem;color:var(--on-surface);
-  line-height:1.4;
+  line-height:1.4;min-width:0;max-width:100%;
+}
+.hero-bullets li > span:not(.hero-check){
+  flex:1;min-width:0;
 }
 .hero-bullets li strong{font-weight:600;color:var(--primary);}
 .hero-check{
@@ -278,9 +325,11 @@ a{text-decoration:none;color:inherit;}
 }
 .hero-check svg{width:11px;height:11px;color:var(--primary);}
 .hero-cta-row{
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-  margin-bottom:36px;
+  display:flex;align-items:stretch;gap:16px;flex-wrap:wrap;
+  margin-bottom:36px;width:100%;max-width:100%;min-width:0;
 }
+.hero-cta-call-text{display:inline;line-height:1.35;text-align:center;}
+.hero-cta-call-phone,.hero-cta-call-sub{display:none;}
 .hero-call-alt{
   display:flex;align-items:center;gap:10px;
 }
@@ -293,7 +342,8 @@ a{text-decoration:none;color:inherit;}
   color:var(--primary);
 }
 .hero-trust-row{
-  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;
+  max-width:100%;width:100%;min-width:0;
 }
 .trust-logo{
   font-family:var(--font-label);font-size:.7rem;font-weight:700;
@@ -320,23 +370,23 @@ a{text-decoration:none;color:inherit;}
 }
 .hero-photo{
   width:100%;height:100%;
-  background:linear-gradient(150deg,#1a3a32 0%,#02241d 100%);
-  display:flex;align-items:center;justify-content:center;
+  background:var(--primary-mid);
   position:relative;
   overflow:hidden;
 }
-/* Replace .hero-photo with real img: <img src="technician.jpg" style="width:100%;height:100%;object-fit:cover;"> */
-.hero-photo-label{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(to top,rgba(2,36,29,.85),transparent);
-  padding:28px 32px 24px;
-  font-family:var(--font-label);font-size:.78rem;
-  color:rgba(255,255,255,.6);letter-spacing:.08em;
-  text-align:center;
+.hero-photo>img{
+  width:100%;height:100%;object-fit:cover;display:block;
 }
-.hero-photo-icon{font-size:5rem;opacity:.4;}
+.hero-photo-credit{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  background:linear-gradient(to top,rgba(2,36,29,.92),rgba(2,36,29,.4),transparent);
+  padding:32px 14px 10px;
+  font-family:var(--font-label);font-size:.62rem;
+  color:rgba(255,255,255,.75);line-height:1.45;
+}
+.hero-photo-credit a{color:rgba(255,255,255,.95);text-decoration:underline;}
 .hero-badge-float{
-  position:absolute;top:24px;right:24px;
+  position:absolute;top:16px;right:16px;max-width:calc(100% - 32px);
   background:var(--secondary-cont);
   border-radius:var(--r-lg);
   padding:14px 18px;
@@ -353,18 +403,20 @@ a{text-decoration:none;color:inherit;}
 }
 
 /* ─── CONTACT STRIP ──────────────────────────────────── */
-.contact-strip{background:var(--primary-mid);}
+.contact-strip{background:var(--primary-mid);overflow-x:hidden;width:100%;}
 .contact-strip-inner{
-  display:grid;grid-template-columns:repeat(3,1fr);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  width:100%;
 }
 .contact-strip-item{
   padding:22px 28px;
   display:flex;align-items:center;justify-content:center;gap:12px;
-  min-height:48px;
+  min-height:48px;min-width:0;
   border-right:1px solid rgba(255,255,255,.1);
   font-family:var(--font-label);font-size:.85rem;font-weight:600;
   color:rgba(255,255,255,.85);
   transition:background .2s;
+  text-align:center;flex-wrap:wrap;
 }
 .contact-strip-item:last-child{border-right:none;}
 .contact-strip-item:hover{background:rgba(255,255,255,.06);}
@@ -383,7 +435,7 @@ a{text-decoration:none;color:inherit;}
   padding:80px 0;
 }
 .why-grid{
-  display:grid;grid-template-columns:1fr 1fr;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   gap:72px;align-items:center;
 }
 .why-left .t-label{color:var(--primary-light);display:block;margin-bottom:14px;}
@@ -414,11 +466,10 @@ a{text-decoration:none;color:inherit;}
 }
 .why-card:hover{box-shadow:var(--shadow-card);transform:translateY(-2px);}
 .why-card-icon{
-  width:48px;height:48px;border-radius:var(--r-md);
-  background:var(--secondary-cont);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;
+  width:56px;height:56px;border-radius:var(--r-md);
+  overflow:hidden;flex-shrink:0;background:var(--surface-low);
 }
+.why-card-icon img{width:100%;height:100%;object-fit:cover;display:block;}
 .why-card h4{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:4px;}
 .why-card p{font-family:var(--font-body);font-size:.875rem;color:var(--on-surface-var);line-height:1.6;}
 
@@ -437,7 +488,7 @@ a{text-decoration:none;color:inherit;}
 .how-section .section-header .t-lg{color:#fff;}
 .how-section .section-header .t-body{color:rgba(255,255,255,.65);}
 .how-steps{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;
   position:relative;z-index:1;
 }
 .how-step{
@@ -466,30 +517,35 @@ a{text-decoration:none;color:inherit;}
 }
 .how-step h3{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:10px;}
 .how-step p{font-family:var(--font-body);font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.65;}
-.how-step-emoji{font-size:1.5rem;margin-bottom:12px;}
+.how-step-photo{
+  width:100%;height:112px;object-fit:cover;display:block;
+  border-radius:var(--r-md);margin-bottom:14px;
+}
 
 /* ─── SERVICES ───────────────────────────────────────── */
 .services-section{padding:88px 0;background:var(--surface-low);}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
 .service-card{
   background:var(--surface);
   border-radius:var(--r-xl);
-  overflow:hidden;
+  overflow:hidden;min-width:0;
   border:1px solid rgba(2,36,29,.07);
   box-shadow:var(--shadow-glass);
   transition:box-shadow .25s,transform .25s;
 }
 .service-card:hover{box-shadow:var(--shadow-card);transform:translateY(-4px);}
 .service-card-top{
-  height:160px;display:flex;align-items:center;justify-content:center;
-  font-size:4.5rem;position:relative;overflow:hidden;
+  height:160px;position:relative;overflow:hidden;
+  background:var(--primary-mid);
 }
-.sc-1{background:linear-gradient(135deg,#1a3a32,#02241d);}
-.sc-2{background:linear-gradient(135deg,#3b1710,#6b2a18);}
-.sc-3{background:linear-gradient(135deg,#142030,#1e3a5a);}
-.sc-4{background:linear-gradient(135deg,#3a3210,#685a18);}
-.sc-5{background:linear-gradient(135deg,#28123a,#4a2070);}
-.sc-6{background:linear-gradient(135deg,#1a3a32,#0d4a38);}
+.service-card-top img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.service-card-top::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(2,36,29,.45),transparent 55%);
+  pointer-events:none;
+}
 .service-card-body{padding:22px 24px;}
 .service-card-body h3{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:8px;}
 .service-card-body p{font-family:var(--font-body);font-size:.855rem;color:var(--on-surface-var);line-height:1.65;margin-bottom:14px;}
@@ -504,21 +560,101 @@ a{text-decoration:none;color:inherit;}
 
 /* ─── SERVICE AREAS ──────────────────────────────────── */
 .areas-section{padding:88px 0;background:var(--bg);}
-.areas-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.areas-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;}
 .areas-content .t-label{color:var(--primary-light);display:block;margin-bottom:12px;}
-.areas-content .t-lg{color:var(--primary);margin-bottom:18px;}
-.areas-content p{color:var(--on-surface-var);line-height:1.75;margin-bottom:28px;}
+.areas-content .t-lg{color:var(--primary);margin-bottom:28px;}
+.areas-content .btn{width:100%;max-width:320px;}
 .areas-map-card{
   background:var(--surface);
   border-radius:var(--r-xl);
   padding:36px;
   border:1px solid rgba(2,36,29,.08);
   box-shadow:var(--shadow-card);
+  overflow:hidden;min-width:0;
+  position:relative;
+}
+.areas-map-card::before{
+  content:'';
+  position:absolute;inset:-40% -20% auto auto;
+  width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(254,214,91,.28),transparent 68%);
+  pointer-events:none;
+}
+.areas-slider-header{
+  position:relative;z-index:1;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  margin-bottom:18px;
+}
+.areas-slider-kicker{
+  font-family:var(--font-label);font-size:.68rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--primary-light);
+  display:block;margin-bottom:4px;
+}
+.areas-slider-copy{
+  font-family:var(--font-body);font-size:.78rem;color:var(--on-surface-var);
+  line-height:1.5;margin-top:2px;
+}
+.areas-slider-controls{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.areas-slider-arrow{
+  width:42px;height:42px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid rgba(2,36,29,.1);
+  background:var(--surface-low);color:var(--primary);
+  cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s;
+}
+.areas-slider-arrow:hover{
+  background:var(--secondary-cont);
+  box-shadow:0 8px 24px rgba(254,214,91,.35);
+  transform:translateY(-1px);
+}
+.areas-slider-arrow:focus-visible{
+  outline:2px solid var(--primary-light);outline-offset:2px;
+}
+.areas-search{
+  position:relative;z-index:1;margin-bottom:18px;
+}
+.areas-search-label{
+  display:block;
+  font-family:var(--font-label);font-size:.72rem;font-weight:700;
+  color:var(--primary);margin-bottom:8px;
+}
+.areas-search-row{
+  display:flex;gap:8px;align-items:center;
+  background:var(--surface-low);
+  border:1px solid rgba(2,36,29,.09);
+  border-radius:var(--r-full);
+  padding:8px 10px 8px 14px;
+}
+.areas-search-row svg{width:18px;height:18px;flex-shrink:0;color:var(--outline);}
+.areas-search-input{
+  width:100%;min-width:0;border:0;background:transparent;
+  font:600 .9rem var(--font-label);color:var(--primary);
+  outline:none;
+}
+.areas-search-input::placeholder{color:var(--outline);}
+.areas-search-clear{
+  display:none;border:0;background:rgba(2,36,29,.08);color:var(--primary);
+  width:28px;height:28px;border-radius:50%;cursor:pointer;
+  font-size:1rem;line-height:1;
+}
+.areas-search-clear.visible{display:inline-flex;align-items:center;justify-content:center;}
+.areas-search-result{
+  margin-top:10px;
+  font-family:var(--font-body);font-size:.82rem;line-height:1.5;
+  color:var(--on-surface-var);
+}
+.areas-search-result strong{color:var(--primary);}
+.areas-search-cta{
+  display:inline-flex;margin-top:8px;
+  font-family:var(--font-label);font-size:.78rem;font-weight:700;
+  color:var(--primary);text-decoration:underline;
+  text-underline-offset:3px;
+  border:0;background:transparent;padding:0;cursor:pointer;
 }
 .areas-map-title{
   font-family:var(--font-head);font-size:1.1rem;font-weight:700;
   color:var(--primary);margin-bottom:4px;
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
 }
 .areas-map-sub{font-family:var(--font-label);font-size:.72rem;color:var(--outline);margin-bottom:24px;}
 .areas-towns{
@@ -546,6 +682,76 @@ a{text-decoration:none;color:inherit;}
   background:rgba(76,227,70,.12);color:#1a6b10;
   padding:5px 12px;border-radius:var(--r-full);
   margin-bottom:20px;
+}
+.areas-rotator{
+  display:grid;
+  margin-bottom:8px;
+  position:relative;z-index:1;
+  min-height:214px;
+  perspective:900px;
+}
+.areas-county-slide{
+  grid-area:1/1;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(16px) scale(.98) rotateX(2deg);
+  filter:blur(8px);
+  transition:
+    opacity .7s cubic-bezier(.2,.8,.2,1),
+    transform .7s cubic-bezier(.2,.8,.2,1),
+    filter .7s cubic-bezier(.2,.8,.2,1),
+    visibility .7s;
+  pointer-events:none;
+}
+.areas-county-slide.active{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1) rotateX(0deg);
+  filter:blur(0);
+  pointer-events:auto;
+}
+.areas-town-match{
+  color:var(--primary);
+  font-weight:700;
+}
+.areas-town-match::before{
+  background:var(--secondary-cont)!important;
+  box-shadow:0 0 0 4px rgba(254,214,91,.22);
+}
+.areas-county-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--font-label);font-size:.65rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:rgba(76,227,70,.15);color:#1a6b10;
+  padding:4px 10px;border-radius:var(--r-full);
+  margin-bottom:10px;
+}
+.areas-county-label{
+  font-family:var(--font-label);font-size:.72rem;font-weight:600;
+  color:var(--outline);letter-spacing:.05em;
+  margin-bottom:6px;
+}
+.areas-rotator-dots{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:20px;padding-top:4px;
+  max-width:100%;overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  position:relative;z-index:1;
+}
+.areas-rotator-dot{
+  width:8px;height:8px;border-radius:50%;
+  border:none;padding:0;cursor:pointer;
+  background:var(--outline-var);
+  transition:background .25s,transform .25s;
+}
+.areas-rotator-dot:hover{background:var(--primary-light);}
+.areas-rotator-dot.active{
+  background:var(--primary);
+  transform:scale(1.15);
+}
+.areas-rotator-dot:focus-visible{
+  outline:2px solid var(--primary-light);
+  outline-offset:2px;
 }
 
 /* ─── TESTIMONIALS ───────────────────────────────────── */
@@ -576,6 +782,7 @@ a{text-decoration:none;color:inherit;}
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
           mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
   overflow: hidden;
+  max-width:100%;width:100%;
 }
 .marquee-track {
   display: flex;
@@ -600,7 +807,8 @@ a{text-decoration:none;color:inherit;}
   padding: 30px;
   box-shadow: var(--shadow-glass);
   transition: box-shadow .25s, transform .25s;
-  width: min(380px, calc(100vw - 48px));
+  width: min(380px, 85vw);
+  max-width: 100%;
   flex-shrink: 0;
   cursor: default;
   user-select: none;
@@ -634,16 +842,27 @@ a{text-decoration:none;color:inherit;}
 
 /* ─── ABOUT ──────────────────────────────────────────── */
 .about-section{padding:88px 0;background:var(--bg);}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
-.about-photo-wrap{position:relative;}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:center;}
+.about-photo-wrap{position:relative;overflow:hidden;max-width:100%;}
 .about-photo{
-  background:linear-gradient(150deg,#1a3a32,#02241d);
+  background:var(--primary-mid);
   border-radius:var(--r-xl);height:480px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:6rem;overflow:hidden;
+  overflow:hidden;
   box-shadow:var(--shadow-lift);
+  max-width:100%;position:relative;
 }
-/* Replace with: <img src="junior.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r-xl)"> */
+.about-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  border-radius:var(--r-xl);
+}
+.about-photo-credit{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:10px 14px;
+  background:linear-gradient(to top,rgba(2,36,29,.85),transparent);
+  font-family:var(--font-label);font-size:.6rem;
+  color:rgba(255,255,255,.75);
+}
+.about-photo-credit a{color:#fff;text-decoration:underline;}
 .about-stat{
   position:absolute;
   background:var(--surface);
@@ -688,7 +907,7 @@ a{text-decoration:none;color:inherit;}
 
 /* ─── FOOTER ─────────────────────────────────────────── */
 .footer{background:#07161e;padding:60px 0 28px;}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-grid{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:40px;margin-bottom:48px;}
 .footer-brand-name{font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-.02em;}
 .footer-brand-tag{font-family:var(--font-label);font-size:.65rem;color:rgba(255,255,255,.35);margin-top:2px;margin-bottom:16px;}
 .footer-brand p{font-family:var(--font-body);font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:260px;margin-bottom:20px;}
@@ -708,12 +927,39 @@ a{text-decoration:none;color:inherit;}
   border-radius:var(--r-sm);padding:7px 12px;margin-top:12px;
   font-family:var(--font-label);font-size:.65rem;color:rgba(255,255,255,.4);
 }
+.footer-license svg{width:14px;height:14px;flex-shrink:0;opacity:.7;}
+.photo-credits{
+  background:var(--surface-low);
+  border-top:1px solid rgba(2,36,29,.08);
+  padding:28px 0 36px;
+}
+.photo-credits-inner{max-width:1280px;margin:0 auto;padding:0 24px;min-width:0;}
+.photo-credits h6{
+  font-family:var(--font-label);font-size:.7rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--outline);margin-bottom:12px;
+}
+.photo-credits li{
+  font-family:var(--font-body);font-size:.75rem;color:var(--on-surface-var);
+  line-height:1.55;
+}
+.photo-credits ul{
+  list-style:none;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:6px 16px;margin-bottom:10px;
+}
+.photo-credits p{font-family:var(--font-body);font-size:.72rem;color:var(--outline);}
+.photo-credits a{color:var(--primary-light);text-decoration:underline;}
 .footer-bottom{
   border-top:1px solid rgba(255,255,255,.07);
   padding-top:24px;
   display:flex;justify-content:space-between;align-items:center;
   font-family:var(--font-label);font-size:.7rem;color:rgba(255,255,255,.3);
   flex-wrap:wrap;gap:10px;
+}
+.footer-bottom > span{
+  max-width:100%;min-width:0;
+  overflow-wrap:break-word;word-wrap:break-word;
 }
 .footer-bottom-links{display:flex;gap:16px;}
 .footer-bottom-links a{color:rgba(255,255,255,.3);transition:color .2s;}
@@ -806,6 +1052,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
   .fade-up{opacity:1;transform:none;transition:none;}
   .btn:hover{transform:none;}
   .float-cta a{animation:none;}
+  .areas-county-slide{transition:none;}
 }
 
 /* ─── RESPONSIVE: xl tablet (max 1023px) ─────────────── */
@@ -813,12 +1060,12 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
   .hero-wrap{grid-template-columns:1fr;max-height:none;min-height:auto;}
   .hero-left{
     padding:48px 24px 32px;
-    max-width:680px;margin:0 auto;
-    padding-left:24px;
+    max-width:100%;width:100%;margin:0 auto;
+    padding-left:24px;padding-right:24px;
   }
   .hero-right{height:320px;order:2;}
   .hero-left{order:1;}
-  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .services-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
   .why-grid,.areas-grid,.about-grid{grid-template-columns:1fr;gap:40px;}
   .about-stat-1,.about-stat-2{position:static;margin-top:12px;display:inline-flex;}
@@ -831,37 +1078,85 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
 @media(max-width:767px){
   body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px));}
   .topbar{display:none;}
-  .nav-links,.nav-phone{display:none;}
-  .nav-toggle{display:flex;}
-  .nav-book-full{display:none;}
-  .nav-book-short{display:inline-flex;}
-  .nav-inner{padding:10px 16px;}
-  .nav-actions .btn-gold{padding:10px 18px;font-size:.8rem;min-height:44px;}
+  .btn{white-space:normal;max-width:100%;text-align:center;}
   .mobile-cta-bar{display:grid;}
   .float-cta{display:none!important;}
-  .hero-left{padding:32px 16px 24px;}
-  .hero-headline{font-size:clamp(1.85rem,8vw,2.2rem);}
-  .hero-subline{font-size:.95rem;margin-bottom:20px;}
+  .hero{overflow-x:hidden;width:100%;}
+  .hero-wrap{width:100%;}
+  .hero-left{
+    padding:32px 16px 24px;
+    width:100%;max-width:100%;box-sizing:border-box;
+  }
+  .hero-headline{
+    font-size:clamp(1.75rem,7.5vw,2.2rem);
+    max-width:100%;overflow-wrap:break-word;
+  }
+  .hero-headline em{
+    display:inline;padding:2px 8px;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  }
+  .hero-location-tag{max-width:100%;flex-wrap:wrap;}
+  .hero-subline{font-size:.95rem;margin-bottom:20px;max-width:100%;}
   .hero-bullets{margin-bottom:24px;gap:12px;}
+  .hero-bullets li{font-size:.9rem;line-height:1.45;}
   .hero-cta-row{
     flex-direction:column;align-items:stretch;
     gap:10px;margin-bottom:24px;
   }
-  .hero-cta-call{display:inline-flex;width:100%;}
+  .hero-cta-row .btn{
+    width:100%;max-width:100%;min-width:0;
+    white-space:normal;
+    flex-wrap:wrap;
+    line-height:1.35;
+    padding:14px 16px;
+    font-size:clamp(.78rem,3.4vw,.88rem);
+  }
+  .hero-cta-call{display:inline-flex;}
+  .hero-cta-call-text{display:flex;flex-direction:column;align-items:center;gap:2px;}
+  .hero-cta-call-long{display:none;}
+  .hero-cta-call-phone{display:block;}
+  .hero-cta-call-sub{display:block;font-size:.88em;font-weight:600;opacity:.92;}
   .hero-cta-book-desktop{display:none;}
-  .hero-cta-book-mobile{display:inline-flex;width:100%;}
+  .hero-cta-book-mobile{display:inline-flex;}
   .hero-call-alt{display:none;}
   .hero-trust-row{
-    gap:10px;
-    overflow-x:auto;flex-wrap:nowrap;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom:4px;
+    gap:10px 12px;
+    flex-wrap:wrap;
+    overflow:visible;
+    padding-bottom:0;
   }
-  .trust-logo{flex-shrink:0;}
-  .hero-google-badge{flex-shrink:0;}
-  .hero-wrap{min-height:auto;}
-  .hero-right{height:260px;}
-  .how-steps,.services-grid{grid-template-columns:1fr;}
+  .trust-logo{font-size:.65rem;flex:0 1 auto;}
+  .hero-google-badge{
+    flex:1 1 100%;
+    max-width:100%;
+    width:100%;
+    justify-content:center;
+    box-sizing:border-box;
+  }
+  .contact-strip-item{
+    white-space:normal;text-align:center;
+    overflow-wrap:break-word;
+  }
+  .hero-wrap{min-height:auto;width:100%;}
+  .hero-right{height:260px;width:100%;}
+  .hero-photo-label{padding:16px 12px;font-size:.7rem;}
+  .areas-map-card{padding:24px 16px;}
+  .areas-slider-header{align-items:flex-start;gap:12px;}
+  .areas-slider-copy{font-size:.76rem;}
+  .areas-slider-controls{gap:6px;}
+  .areas-slider-arrow{width:40px;height:40px;}
+  .areas-search-row{border-radius:var(--r-lg);}
+  .areas-rotator{min-height:0;}
+  .areas-map-title{font-size:1rem;}
+  .about-stat-1{left:8px;bottom:8px;right:auto;}
+  .about-stat-2{right:8px;top:8px;left:auto;}
+  .about-content,.areas-content{min-width:0;}
+  .areas-content .btn{max-width:none;}
+  .contact-strip-item{font-size:.8rem;padding:16px;}
+  .cta-section .t-xl{font-size:clamp(1.75rem,7vw,2.6rem);}
+  .modal-overlay{padding:12px;}
+  .modal{padding:24px 16px 20px;max-height:88dvh;}
+  .how-steps,.services-grid{grid-template-columns:minmax(0,1fr);}
   .how-step::before{font-size:3rem;top:-8px;}
   .contact-strip-inner{display:flex;flex-direction:column;}
   .contact-strip-item{
@@ -904,12 +1199,16 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
   .nav-logo-sub{display:none;}
   .nav-logo-main{font-size:1.05rem;}
   .hero-left{padding:28px 16px 20px;}
-  .hero-right{height:220px;}
+  .hero-right{height:220px;width:100%;}
+  .hero-badge-float{top:12px;right:12px;padding:10px 12px;}
+  .hero-badge-float-num{font-size:1.35rem;}
+  .hero-photo-credit{font-size:.58rem;padding:24px 10px 8px;}
   .hero-photo-label{padding:16px;font-size:.7rem;}
-  .hero-badge-float{padding:12px 14px;}
   .cta-perks{gap:12px 16px;}
   .cta-perks span{font-size:.65rem;}
   .why-quote{padding:20px;}
+  .photo-credits-inner{padding:0 16px;}
+  .photo-credits ul{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -1010,27 +1309,30 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
         (201) 555-0000
       </a>
       <button type="button" class="btn btn-gold nav-book-full" onclick="openModal()">Book Appointment</button>
-      <button type="button" class="btn btn-gold nav-book-short" onclick="openModal()">Book</button>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
         <span></span>
       </button>
     </div>
   </div>
-  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true" role="navigation" aria-label="Mobile menu">
     <div class="nav-drawer-inner">
       <ul class="nav-drawer-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#how">How It Works</a></li>
-        <li><a href="#areas">Service Areas</a></li>
+        <li><a href="#areas">Areas</a></li>
         <li><a href="#testimonials">Reviews</a></li>
-        <li><a href="#about">About Junior</a></li>
+        <li><a href="#about">About</a></li>
       </ul>
       <div class="nav-drawer-ctas">
         <a href="tel:+12015550000" class="btn btn-gold btn-block">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
           Call (201) 555-0000
         </a>
-        <button type="button" class="btn btn-primary btn-block" onclick="openModal()">Book Appointment</button>
+        <button type="button" class="btn btn-primary btn-block" onclick="openModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book Appointment
+        </button>
       </div>
     </div>
   </div>
@@ -1066,8 +1368,12 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
       </ul>
       <div class="hero-cta-row">
         <a href="tel:+12015550000" class="btn btn-gold btn-block hero-cta-call">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call (201) 555-0000 — Same Day
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <span class="hero-cta-call-text">
+            <span class="hero-cta-call-long">Call (201) 555-0000 — Same Day</span>
+            <span class="hero-cta-call-phone">Call (201) 555-0000</span>
+            <span class="hero-cta-call-sub">Same-day service</span>
+          </span>
         </a>
         <button type="button" class="btn btn-primary hero-cta-book-desktop" onclick="openModal()">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1099,9 +1405,11 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
     </div>
     <div class="hero-right">
       <div class="hero-photo">
-        <span class="hero-photo-icon">👷🏽</span>
-        <!-- REPLACE: <img src="technician-hero.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
-        <div class="hero-photo-label">Replace with photo of Junior or technician in uniform on-site</div>
+        <img
+          src="assets/images/hero/hero-hispanic-family-pest-service.jpg"
+          alt="Happy Hispanic family receiving pest control service at their front door"
+          width="1400" height="788" loading="eager" decoding="async"
+        />
         <div class="hero-badge-float">
           <div class="hero-badge-float-num">Same<br>Day</div>
           <div class="hero-badge-float-text">SERVICE</div>
@@ -1113,7 +1421,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
 
 <!-- CONTACT STRIP -->
 <div class="contact-strip">
-  <div class="contact-strip-inner container" style="max-width:100%;padding:0;">
+  <div class="contact-strip-inner" style="max-width:100%;padding:0;width:100%;">
     <a href="tel:+12015550000" class="contact-strip-item contact-strip-order-1">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
       Call (201) 555-0000
@@ -1139,7 +1447,9 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
     </div>
     <div class="services-grid">
       <div class="service-card fade-up">
-        <div class="service-card-top sc-1">🐭</div>
+        <div class="service-card-top">
+          <img src="assets/images/services/rodent-control.jpg" alt="Technician inspecting a suburban home for rodent entry points" width="800" height="450" loading="lazy" decoding="async"/>
+        </div>
         <div class="service-card-body">
           <h3>Rodent Control</h3>
           <p>We locate entry points, eliminate the population, and seal your home so mice and rats can't get back in. No more scratching in the walls at night.</p>
@@ -1147,7 +1457,9 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
         </div>
       </div>
       <div class="service-card fade-up">
-        <div class="service-card-top sc-2">🪲</div>
+        <div class="service-card-top">
+          <img src="assets/images/services/bed-bugs.jpg" alt="Technician inspecting a bedroom for bed bug treatment" width="800" height="450" loading="lazy" decoding="async"/>
+        </div>
         <div class="service-card-body">
           <h3>Bed Bug Treatment</h3>
           <p>Targeted treatment protocols that eliminate bed bugs at every life stage — egg to adult. We don't just treat the surface, we eliminate the infestation.</p>
@@ -1155,7 +1467,9 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
         </div>
       </div>
       <div class="service-card fade-up">
-        <div class="service-card-top sc-3">🪳</div>
+        <div class="service-card-top">
+          <img src="assets/images/services/cockroaches.jpg" alt="Technician treating kitchen cabinets for cockroach elimination" width="800" height="450" loading="lazy" decoding="async"/>
+        </div>
         <div class="service-card-body">
           <h3>Cockroach Elimination</h3>
           <p>We target harborage areas, breeding zones, and entry points — not just the ones you see. Complete and lasting treatment for all cockroach species.</p>
@@ -1163,15 +1477,19 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
         </div>
       </div>
       <div class="service-card fade-up">
-        <div class="service-card-top sc-4">🐝</div>
+        <div class="service-card-top">
+          <img src="assets/images/services/wasps.jpg" alt="Technician removing a wasp nest from a suburban home exterior" width="800" height="450" loading="lazy" decoding="async"/>
+        </div>
         <div class="service-card-body">
           <h3>Wasps & Stinging Insects</h3>
           <p>Wasp and hornet nests near your family are a real safety risk. We handle same-day emergency removals — safely and completely.</p>
-          <span class="service-pill service-pill-gold">⚡ Emergency response</span>
+          <span class="service-pill service-pill-gold"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg> Emergency response</span>
         </div>
       </div>
       <div class="service-card fade-up">
-        <div class="service-card-top sc-5">🐜</div>
+        <div class="service-card-top">
+          <img src="assets/images/services/ants.jpg" alt="Technician treating ant activity along a home foundation" width="800" height="450" loading="lazy" decoding="async"/>
+        </div>
         <div class="service-card-body">
           <h3>Ant Infestations</h3>
           <p>We find the colony, not just the trail. Species identification lets us choose the right treatment so the whole colony is eliminated — not just displaced.</p>
@@ -1179,7 +1497,9 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
         </div>
       </div>
       <div class="service-card fade-up">
-        <div class="service-card-top sc-6">🛡️</div>
+        <div class="service-card-top">
+          <img src="assets/images/services/protection-plan.jpg" alt="Family enjoying a protected, pest-free home" width="800" height="450" loading="lazy" decoding="async"/>
+        </div>
         <div class="service-card-body">
           <h3>Quarterly Protection Plan</h3>
           <p>Seasonal visits, monitoring, and priority same-day response whenever you need it. Prevention costs less than treatment — protect your home year-round.</p>
@@ -1315,37 +1635,35 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
     <div class="areas-grid">
       <div class="areas-content">
         <span class="t-label">Service Area</span>
-        <h2 class="t-lg">Close to home. Here when you need us.</h2>
-        <p>We start where we know best — Bergen County communities we're part of. By keeping our service area tight, we can actually show up same-day without sacrificing quality or response time.</p>
-        <span class="areas-expand-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Expanding one county every quarter
-        </span>
-        <p style="margin-bottom:0;">Not sure if we cover your town? Give us a call — if we can't make it to you yet, we'll let you know honestly and tell you when we can.</p>
-        <div style="margin-top:28px;">
-          <button class="btn btn-primary" onclick="openModal()">Check My Address →</button>
-        </div>
+        <h2 class="t-lg">New Jersey counties &amp; towns</h2>
+        <button type="button" class="btn btn-primary" onclick="openModal()">Check If We Serve Your Area →</button>
       </div>
       <div class="areas-map-card fade-up">
-        <div class="areas-map-title">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Bergen County Towns We Serve
+        <div class="areas-slider-header">
+          <div>
+            <span class="areas-slider-kicker">Auto-Browsing Counties</span>
+            <p class="areas-slider-copy">Use the arrows or search your town below.</p>
+          </div>
+          <div class="areas-slider-controls" aria-label="Browse counties">
+            <button type="button" class="areas-slider-arrow" id="areasPrev" aria-label="Previous county">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="areas-slider-arrow" id="areasNext" aria-label="Next county">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
-        <div class="areas-map-sub">Starting from Hackensack · Growing every quarter</div>
-        <ul class="areas-towns">
-          <li>Hackensack</li><li>Teaneck</li>
-          <li>Englewood</li><li>Fort Lee</li>
-          <li>Paramus</li><li>Bergenfield</li>
-          <li>Lodi</li><li>Garfield</li>
-          <li>Rutherford</li><li>Lyndhurst</li>
-          <li>Ridgefield</li><li>Fairview</li>
-          <li>Palisades Park</li><li>Cliffside Park</li>
-          <li>Little Ferry</li><li>Hasbrouck Heights</li>
-        </ul>
-        <div class="areas-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          Don't see your town? Call us — we may still be able to help or let you know when we're coming.
+        <div class="areas-search">
+          <label class="areas-search-label" for="areaTownSearch">Search for your town</label>
+          <div class="areas-search-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input class="areas-search-input" id="areaTownSearch" type="search" placeholder="Try Hackensack, Paramus, Cherry Hill..." autocomplete="off"/>
+            <button type="button" class="areas-search-clear" id="areaSearchClear" aria-label="Clear town search">×</button>
+          </div>
+          <div class="areas-search-result" id="areaSearchResult" aria-live="polite"></div>
         </div>
+        <div class="areas-rotator" id="areasRotator" aria-live="polite" aria-atomic="true"></div>
+        <div class="areas-rotator-dots" id="areasRotatorDots" role="tablist" aria-label="Browse New Jersey counties"></div>
       </div>
     </div>
   </div>
@@ -1361,19 +1679,19 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
     </div>
     <div class="how-steps">
       <div class="how-step fade-up" data-n="1">
-        <div class="how-step-emoji">📞</div>
+        <img class="how-step-photo" src="assets/images/how/how-call-text-form.jpg" alt="Customer texting or calling for pest control help from home" width="900" height="506" loading="lazy" decoding="async"/>
         <div class="how-step-num">1</div>
         <h3>Call, Text, or Fill Out the Form</h3>
         <p>Tell us what you're dealing with, your address, and how urgently you need help. A real team member picks up and gets the details — no forms with 30 required fields.</p>
       </div>
       <div class="how-step fade-up" data-n="2">
-        <div class="how-step-emoji">🔍</div>
+        <img class="how-step-photo" src="assets/images/how/how-same-day-inspection.jpg" alt="Black male pest control technician inspecting a home's entry points" width="900" height="506" loading="lazy" decoding="async"/>
         <div class="how-step-num">2</div>
         <h3>Same-Day Inspection</h3>
         <p>A licensed technician arrives today. We inspect your property, identify exactly what's happening, and walk you through what treatment is needed — and why. Free, no pressure.</p>
       </div>
       <div class="how-step fade-up" data-n="3">
-        <div class="how-step-emoji">✅</div>
+        <img class="how-step-photo" src="assets/images/how/how-problem-eliminated.jpg" alt="Technician explaining completed treatment to a homeowner in a clean living room" width="900" height="506" loading="lazy" decoding="async"/>
         <div class="how-step-num">3</div>
         <h3>Problem Eliminated</h3>
         <p>We treat, we eliminate, we explain everything we did. Then we set you up with a plan to keep it from coming back — whether that's a one-time fix or a quarterly protection plan.</p>
@@ -1399,28 +1717,36 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
       </div>
       <div class="why-right">
         <div class="why-card fade-up">
-          <div class="why-card-icon">⚡</div>
+          <div class="why-card-icon">
+            <img src="assets/images/why/why-same-day.jpg" alt="Technician arriving for same-day service at a home" width="900" height="506" loading="lazy" decoding="async"/>
+          </div>
           <div>
             <h4>Same-Day Availability</h4>
             <p>Call in the morning — a technician is at your door today. No 3-day waits. No "earliest we can do is next Thursday."</p>
           </div>
         </div>
         <div class="why-card fade-up">
-          <div class="why-card-icon">🧑‍🤝‍🧑</div>
+          <div class="why-card-icon">
+            <img src="assets/images/why/why-real-humans.jpg" alt="Friendly team member answering a customer phone call" width="900" height="506" loading="lazy" decoding="async"/>
+          </div>
           <div>
             <h4>Real Humans, Every Step</h4>
             <p>No overseas call centers. No bots repeating a script. When you call, a real person who knows pest control picks up.</p>
           </div>
         </div>
         <div class="why-card fade-up">
-          <div class="why-card-icon">💰</div>
+          <div class="why-card-icon">
+            <img src="assets/images/why/why-fair-pricing.jpg" alt="Technician reviewing a transparent service estimate with a homeowner" width="900" height="506" loading="lazy" decoding="async"/>
+          </div>
           <div>
             <h4>Honest, Fair Pricing</h4>
             <p>We price for the work, not the upsell. No surprise fees, no predatory quotes. Just what's fair and what fixes the problem.</p>
           </div>
         </div>
         <div class="why-card fade-up">
-          <div class="why-card-icon">🛡️</div>
+          <div class="why-card-icon">
+            <img src="assets/images/why/why-service-guarantee.jpg" alt="Technician checking a pest monitoring station outside a home" width="900" height="506" loading="lazy" decoding="async"/>
+          </div>
           <div>
             <h4>100% Service Guarantee</h4>
             <p>If the pests come back between treatments, so do we. Free re-treatments on all service plans — your satisfaction is non-negotiable.</p>
@@ -1437,8 +1763,11 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
     <div class="about-grid">
       <div class="about-photo-wrap">
         <div class="about-photo">
-          👷🏽
-          <!-- REPLACE: <img src="junior-photo.jpg" alt="Junior Solice" style="width:100%;height:100%;object-fit:cover;"> -->
+          <img
+            src="assets/images/about/junior-technician-portrait.jpg"
+            alt="Black male pest control technician standing outside a home"
+            width="900" height="506" loading="lazy" decoding="async"
+          />
         </div>
         <div class="about-stat about-stat-1">
           <div class="about-stat-num">9+</div>
@@ -1501,7 +1830,10 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
           (201) 555-0000
         </a>
-        <div class="footer-license">🛡️ NJ Licensed · Fully Insured · EPA Compliant</div>
+        <div class="footer-license">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          NJ Licensed · Fully Insured · EPA Compliant
+        </div>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
@@ -1535,7 +1867,7 @@ a:focus-visible,.btn:focus-visible,button:focus-visible,
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 It's Just June Pest Control · Bergen County, NJ. All rights reserved.</span>
+      <span>© 2026 It's Just June Pest Control · Bergen County, NJ. All rights reserved.</span>
       <div class="footer-bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -1564,9 +1896,11 @@ window.addEventListener('scroll',()=>{
   }
 });
 
-// Mobile nav drawer
+// Mobile nav drawer (tablet + phone, ≤1023px)
 const navToggle=document.getElementById('navToggle');
 const navDrawer=document.getElementById('navDrawer');
+const navBackdrop=document.getElementById('navBackdrop');
+const MOBILE_NAV_MQ=window.matchMedia('(max-width: 1023px)');
 function setNavDrawerTop(){
   if(nav&&navDrawer){
     document.documentElement.style.setProperty('--nav-drawer-top',nav.offsetHeight+'px');
@@ -1577,25 +1911,46 @@ function closeNavDrawer(){
   navToggle.setAttribute('aria-expanded','false');
   navDrawer.classList.remove('open');
   navDrawer.setAttribute('aria-hidden','true');
+  if(navBackdrop){
+    navBackdrop.classList.remove('open');
+    navBackdrop.setAttribute('aria-hidden','true');
+  }
   if(!document.getElementById('quoteModal').classList.contains('open')){
     document.body.style.overflow='';
   }
 }
 function openNavDrawer(){
+  if(!MOBILE_NAV_MQ.matches)return;
   setNavDrawerTop();
   navToggle.setAttribute('aria-expanded','true');
   navDrawer.classList.add('open');
   navDrawer.setAttribute('aria-hidden','false');
+  if(navBackdrop){
+    navBackdrop.classList.add('open');
+    navBackdrop.setAttribute('aria-hidden','false');
+  }
   document.body.style.overflow='hidden';
 }
 if(navToggle&&navDrawer){
   setNavDrawerTop();
-  window.addEventListener('resize',setNavDrawerTop);
+  window.addEventListener('resize',()=>{
+    setNavDrawerTop();
+    if(!MOBILE_NAV_MQ.matches)closeNavDrawer();
+  });
   navToggle.addEventListener('click',()=>{
     navToggle.getAttribute('aria-expanded')==='true'?closeNavDrawer():openNavDrawer();
   });
-  navDrawer.querySelectorAll('a').forEach(link=>{
+  if(navBackdrop){
+    navBackdrop.addEventListener('click',closeNavDrawer);
+  }
+  navDrawer.querySelectorAll('a[href^="#"]').forEach(link=>{
     link.addEventListener('click',closeNavDrawer);
+  });
+  navDrawer.querySelector('.nav-drawer-ctas button')?.addEventListener('click',()=>{
+    setTimeout(closeNavDrawer,0);
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&navToggle.getAttribute('aria-expanded')==='true')closeNavDrawer();
   });
 }
 
@@ -1648,6 +2003,177 @@ const io=new IntersectionObserver(entries=>{
   entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
 },{threshold:.1,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+// NJ counties rotator — Bergen first, then 4 more alphabetically (5 total)
+const NJ_COUNTIES=[
+  {name:'Bergen County, New Jersey',cities:[
+    'Hackensack','Teaneck','Englewood','Fort Lee','Paramus','Bergenfield',
+    'Ridgewood','Fair Lawn','Garfield','Lodi','Rutherford','Lyndhurst',
+    'Ridgefield','Fairview','Palisades Park','Cliffside Park','Little Ferry','Hasbrouck Heights'
+  ]},
+  {name:'Atlantic County',cities:[
+    'Atlantic City','Egg Harbor Township','Hammonton','Galloway','Pleasantville',
+    'Ventnor City','Brigantine','Absecon','Somers Point','Linwood'
+  ]},
+  {name:'Burlington County',cities:[
+    'Mount Holly','Moorestown','Medford','Bordentown','Evesham',
+    'Marlton','Willingboro','Burlington City','Cinnaminson','Maple Shade'
+  ]},
+  {name:'Camden County',cities:[
+    'Camden','Cherry Hill','Voorhees','Collingswood','Haddonfield',
+    'Gloucester City','Pennsauken','Lindenwold','Bellmawr','Merchantville'
+  ]},
+  {name:'Cape May County',cities:[
+    'Cape May','Wildwood','Ocean City','Middle Township','Villas',
+    'North Wildwood','Lower Township','Sea Isle City','Stone Harbor','Avalon'
+  ]}
+];
+(function initCountyRotator(){
+  const rotator=document.getElementById('areasRotator');
+  const dotsWrap=document.getElementById('areasRotatorDots');
+  const prevBtn=document.getElementById('areasPrev');
+  const nextBtn=document.getElementById('areasNext');
+  const searchInput=document.getElementById('areaTownSearch');
+  const searchClear=document.getElementById('areaSearchClear');
+  const searchResult=document.getElementById('areaSearchResult');
+  if(!rotator||!dotsWrap)return;
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pinSvg='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  const townIndex=[];
+  NJ_COUNTIES.forEach((county,i)=>{
+    const slide=document.createElement('div');
+    slide.className='areas-county-slide'+(i===0?' active':'');
+    slide.setAttribute('role','tabpanel');
+    slide.id='areas-county-'+i;
+    slide.setAttribute('aria-hidden',i===0?'false':'true');
+    const citiesHtml=county.cities.map(c=>{
+      townIndex.push({town:c,county:county.name,countyIndex:i,normalized:c.toLowerCase()});
+      return '<li data-town="'+c.toLowerCase()+'">'+c+'</li>';
+    }).join('');
+    slide.innerHTML=
+      '<div class="areas-map-title">'+pinSvg+county.name+'</div>'+
+      '<ul class="areas-towns">'+citiesHtml+'</ul>';
+    rotator.appendChild(slide);
+    const dot=document.createElement('button');
+    dot.type='button';
+    dot.className='areas-rotator-dot'+(i===0?' active':'');
+    dot.setAttribute('role','tab');
+    dot.setAttribute('aria-label',county.name);
+    dot.setAttribute('aria-controls','areas-county-'+i);
+    dot.setAttribute('aria-selected',i===0?'true':'false');
+    dotsWrap.appendChild(dot);
+  });
+  let idx=0,timer=null;
+  const slides=rotator.querySelectorAll('.areas-county-slide');
+  const dots=dotsWrap.querySelectorAll('.areas-rotator-dot');
+  function goTo(n){
+    if(n===idx)return;
+    slides[idx].classList.remove('active');
+    slides[idx].setAttribute('aria-hidden','true');
+    dots[idx].classList.remove('active');
+    dots[idx].setAttribute('aria-selected','false');
+    idx=(n+slides.length)%slides.length;
+    slides[idx].classList.add('active');
+    slides[idx].setAttribute('aria-hidden','false');
+    dots[idx].classList.add('active');
+    dots[idx].setAttribute('aria-selected','true');
+  }
+  function restartAuto(){
+    stopAuto();
+    startAuto();
+  }
+  function startAuto(){
+    if(reducedMotion||timer)return;
+    timer=setInterval(()=>goTo(idx+1),5200);
+  }
+  function stopAuto(){
+    if(timer){clearInterval(timer);timer=null;}
+  }
+  function clearTownHighlights(){
+    rotator.querySelectorAll('.areas-town-match').forEach(el=>el.classList.remove('areas-town-match'));
+  }
+  function resetTownSearch(){
+    if(searchInput)searchInput.value='';
+    if(searchResult)searchResult.textContent='';
+    searchClear?.classList.remove('visible');
+    clearTownHighlights();
+  }
+  function showSearchPrompt(query){
+    if(!searchResult)return;
+    searchResult.textContent='';
+    const text=document.createElement('span');
+    text.textContent=query
+      ? 'We do not see "'+query+'" in this sample list yet. Fill out the form anyway and we will confirm if we can serve your area.'
+      : '';
+    searchResult.appendChild(text);
+    if(query){
+      const cta=document.createElement('button');
+      cta.type='button';
+      cta.className='areas-search-cta';
+      cta.textContent='Ask if we serve your town →';
+      cta.addEventListener('click',openModal);
+      searchResult.appendChild(document.createElement('br'));
+      searchResult.appendChild(cta);
+    }
+  }
+  function runTownSearch(){
+    if(!searchInput||!searchResult)return;
+    const query=searchInput.value.trim();
+    const normalized=query.toLowerCase();
+    searchClear?.classList.toggle('visible',query.length>0);
+    clearTownHighlights();
+    if(!query){
+      searchResult.textContent='';
+      restartAuto();
+      return;
+    }
+    stopAuto();
+    if(normalized.length<2){
+      searchResult.textContent='Type at least 2 characters to search towns.';
+      return;
+    }
+    const matches=townIndex.filter(item=>item.normalized.includes(normalized));
+    if(!matches.length){
+      showSearchPrompt(query);
+      return;
+    }
+    const first=matches[0];
+    goTo(first.countyIndex);
+    matches.forEach(match=>{
+      rotator.querySelectorAll('[data-town="'+match.normalized+'"]').forEach(el=>el.classList.add('areas-town-match'));
+    });
+    searchResult.innerHTML='<strong>'+matches.length+' match'+(matches.length===1?'':'es')+' found:</strong> '+
+      matches.slice(0,4).map(match=>match.town+' in '+match.county).join(' · ')+
+      (matches.length>4?' · more towns match your search':'');
+  }
+  dots.forEach((dot,i)=>{
+    dot.addEventListener('click',()=>{resetTownSearch();stopAuto();goTo(i);startAuto();});
+  });
+  prevBtn?.addEventListener('click',()=>{resetTownSearch();stopAuto();goTo(idx-1);startAuto();});
+  nextBtn?.addEventListener('click',()=>{resetTownSearch();stopAuto();goTo(idx+1);startAuto();});
+  searchInput?.addEventListener('input',runTownSearch);
+  searchClear?.addEventListener('click',()=>{
+    if(!searchInput)return;
+    searchInput.value='';
+    runTownSearch();
+    searchInput.focus();
+  });
+  const card=rotator.closest('.areas-map-card');
+  card?.addEventListener('mouseenter',stopAuto);
+  card?.addEventListener('mouseleave',()=>{
+    if(!searchInput||!searchInput.value.trim())startAuto();
+  });
+  const section=document.getElementById('areas');
+  if(section){
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting&&(!searchInput||!searchInput.value.trim()))startAuto();
+        else stopAuto();
+      });
+    },{threshold:.2});
+    obs.observe(section);
+  }else startAuto();
+})();
 </script>
 </body>
 </html>
